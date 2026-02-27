@@ -11,18 +11,15 @@ library(tidyverse)
 library(lmerTest)
 
 # data
-
 adult_moths <- read.csv("wm_exp1.csv")
 pupal_temperature_treatments <- read.csv("pupa_temperature_treatments_daily.csv")
 
 # reorder temperature treatments for plots
-
 adult_moths$pupa_temperature_treatment <- factor(adult_moths$pupa_temperature_treatment,
                                                  levels = c("cold", "cool", "mean", "warm", "hot", "ambient"))
 
 
 # set up a common colour palette for plots
-
 temperature_treatment_colours <- c("cold" = "#1965AE",
                                    "cool" = "#3FAB5C",
                                    "mean" = "#FFDB58",
@@ -171,7 +168,6 @@ qqnorm(resid(pupal_development_time_model))
 qqline(resid(pupal_development_time_model), col = "red")
 
 # check the normality of the random effects
-
 pupal_development_time_re <- ranef(pupal_development_time_model)$clutch_id[[1]]
 qqnorm(pupal_development_time_re)
 qqline(pupal_development_time_re, col = "red")
