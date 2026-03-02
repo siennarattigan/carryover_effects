@@ -5,13 +5,16 @@
 
 #### SET UP ####
 
-# packages
+#set working directory to Files Pane location
 
+
+# packages
+library(here)
 library(tidyverse)
 library(lmerTest)
 
 # data
-adult_moths <- read.csv("wm_exp1.csv")
+adult_moths <- read.csv(here("data_files", "wm_exp1.csv"))
 pupal_temperature_treatments <- read.csv("pupa_temperature_treatments_daily.csv")
 
 # reorder temperature treatments for plots
@@ -171,4 +174,5 @@ qqline(resid(pupal_development_time_model), col = "red")
 pupal_development_time_re <- ranef(pupal_development_time_model)$clutch_id[[1]]
 qqnorm(pupal_development_time_re)
 qqline(pupal_development_time_re, col = "red")
+
 
