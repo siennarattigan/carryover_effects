@@ -11,7 +11,7 @@ library(tidyverse)
 library(lmerTest)
 
 # data
-egg_subcltuches <- read.csv(here("data_files", "wm_exp2.csv"))
+egg_subcltuches <- read.csv(here("data_files", "egg_subclutches.csv"))
 larval_hatching <- read.csv(here("data_files", "egg_hatching_raw_NAs.csv"))
 egg_temperature_treatments <- read.csv(here("data_files", "egg_temperature_treatments_daily.csv"))
 

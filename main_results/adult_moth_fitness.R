@@ -15,7 +15,7 @@ library(ggsurvfit)
 library(glmmTMB)
 
 # data
-adult_moths <- read.csv(here("data_files", "wm_exp1.csv"))
+adult_moths <- read.csv(here("data_files", "adult_moths.csv"))
 pupal_temperature_treatments <- read.csv(here("data_files", "pupa_temperature_treatments_daily.csv"))
 pupal_survival <- read.csv(here("data_files", "pupa_survival.csv"))
 
