@@ -67,7 +67,8 @@ pupal_development_time_plot <- ggplot(adult_moths,
 pupal_development_time_plot
 
 # save the plot as a png file
-ggsave("pupal_development_time_plot.png", plot = pupal_development_time_plot, width = 6, height = 4, dpi = 300)
+ggsave(here("figures", "pupal_development_time_plot.png"), 
+            plot = pupal_development_time_plot, width = 6, height = 4, dpi = 300)
 
 #### MODEL ####
 
