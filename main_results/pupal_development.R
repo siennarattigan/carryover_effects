@@ -5,9 +5,6 @@
 
 #### SET UP ####
 
-#set working directory to Files Pane location
-
-
 # packages
 library(here)
 library(tidyverse)
@@ -66,7 +63,7 @@ pupal_development_time_plot <- ggplot(adult_moths,
 # look at the output
 pupal_development_time_plot
 
-# save the plot as a png file
+# save as a png file in figures folder
 ggsave(here("figures", "pupal_development_time_plot.png"), 
             plot = pupal_development_time_plot, width = 6, height = 4, dpi = 300)
 
