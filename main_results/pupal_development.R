@@ -12,7 +12,7 @@ library(lmerTest)
 
 # data
 adult_moths <- read.csv(here("data_files", "wm_exp1.csv"))
-pupal_temperature_treatments <- read.csv("pupa_temperature_treatments_daily.csv")
+pupal_temperature_treatments <- read.csv(here("data_files", "pupa_temperature_treatments_daily.csv"))
 
 # reorder temperature treatments for plots
 adult_moths$pupa_temperature_treatment <- factor(adult_moths$pupa_temperature_treatment,
@@ -102,6 +102,7 @@ mean_pupal_development_times <- adult_moths %>%
   group_by(pupa_temperature_treatment) %>%
   summarise(mean_development_time = mean(pupa_development_time))
 
+# look at the output
 print(mean_pupal_development_times)
 
 # create two objects, one with the temperature treatments and the other with the 
@@ -173,5 +174,4 @@ qqline(resid(pupal_development_time_model), col = "red")
 pupal_development_time_re <- ranef(pupal_development_time_model)$clutch_id[[1]]
 qqnorm(pupal_development_time_re)
 qqline(pupal_development_time_re, col = "red")
-
 
