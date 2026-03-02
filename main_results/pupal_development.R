@@ -137,6 +137,7 @@ pupal_development_time_model <- lmer(pupa_development_time ~ pupa_temperature_tr
                                        (1 | clutch_id), 
                                      data = adult_moths_minus_control)
 
+# look at the output 
 summary(pupal_development_time_model)
 
 #### CHECK FIT ####

@@ -146,7 +146,6 @@ female_moths_clean_minus_control <- female_moths_clean %>%
 female_moths_clean_minus_control$pupa_temperature_treatment <- factor(female_moths_clean_minus_control$pupa_temperature_treatment, 
                                                                       levels = c("mean", "cold", "cool", "warm", "hot"))
 
-
 # convert clutch size from a character to an integer
 female_moths_clean$clutch_size <- as.integer(female_moths_clean$clutch_size)
 
@@ -184,7 +183,6 @@ summary(clutch_size_model)
 #### CHECK FIT ####
 
 # compare the full model to a reduced model without the squared term 
-
 full_model <- glmmTMB(clutch_size ~ pupa_temperature_treatment_numerical +
                         I(pupa_temperature_treatment_numerical^2),
                       family = nbinom2(link = "log"),
