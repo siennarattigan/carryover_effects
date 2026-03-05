@@ -144,7 +144,7 @@ ggsave(here("figures", "emergence_vs_hatching.png"),
 # model the effect of emergence date on egg development controlling for egg
 # temperature treatment 
 emergence_vs_egg_dev_model <- lmer(egg_development_time ~ emergence_day*egg_temperature_treatment + 
-                                     (1 | female_id), data = exp2_dev_minus_control)
+                                     (1 | female_id), data = egg_subcltuches_minus_control)
 
 # look at the output
 summary(emergence_vs_egg_dev_model)
@@ -152,14 +152,14 @@ summary(emergence_vs_egg_dev_model)
 #### CHECK FIT ####
 
 # compare full model to a reduced model without interaction 
-full_model <- lm(egg_development_time ~ emergence_day*egg_temperature_treatment, data = exp2_dev_minus_control)
-reduced_model <- lm(egg_development_time ~ emergence_day + egg_temperature_treatment, data = exp2_dev_minus_control)
+full_model <- lm(egg_development_time ~ emergence_day*egg_temperature_treatment, data = egg_subcltuches_minus_control)
+reduced_model <- lm(egg_development_time ~ emergence_day + egg_temperature_treatment, data = egg_subcltuches_minus_control)
 
 anova(full_model, reduced_model, test = "Chisq")
 
 # compare full model to a null model 
-full_model <- lm(egg_development_time ~ emergence_day*egg_temperature_treatment, data = exp2_dev_minus_control)
-null_model <- lm(egg_development_time ~ 1, data = exp2_dev_minus_control)
+full_model <- lm(egg_development_time ~ emergence_day*egg_temperature_treatment, data = egg_subcltuches_minus_control)
+null_model <- lm(egg_development_time ~ 1, data = egg_subcltuches_minus_control)
 
 anova(full_model, null_model, test = "Chisq")
 
@@ -201,7 +201,7 @@ emergence_vs_egg_dev <- ggplot() +
                   ymax = conf.high, 
                   fill = group), 
               alpha = 0.2) +
-  geom_jitter(data = exp2_dev_minus_control,
+  geom_jitter(data = egg_subcltuches_minus_control,
               aes(x = emergence_day, 
                   y = egg_development_time, 
                   colour = egg_temperature_treatment),
