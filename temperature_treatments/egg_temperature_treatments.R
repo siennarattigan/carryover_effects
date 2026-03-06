@@ -14,6 +14,7 @@ library(chillR)
 
 # data
 histtemp <- read.csv(here("data_files", "daily_temp_minmax_1960_to_2016.csv"))
+egg_ambient_treatment <- read.csv(here("data_files", "egg_ambient_treatment.csv"))
 
 # set up a common colour palette for plots
 temperature_treatment_colours <- c("cold" = "#1965AE",
@@ -53,7 +54,6 @@ Days_df <-
   )
 
 # get monthly average sunrise/sunset/daylength
-
 monthly_df <- Days_df %>% 
   mutate(date = as_date(paste("2025", JDay), format="%Y %j")) %>%
   mutate(month = format(date,"%m")) %>% 
@@ -67,7 +67,7 @@ days_df <- Days_df %>%
   mutate(month=format(date,"%m"))
 
 # change to long format
-daylength_df <- pivot_longer(days_df,cols = c(Sunrise:Daylength))
+daylength_df <- pivot_longer(days_df, cols = c(Sunrise:Daylength))
 
 # plot daylength, sunrise and sunset 
 ggplot(daylength_df, aes(JDay, value)) +
@@ -83,7 +83,7 @@ histtemp_formatted <- histtemp %>%
 # remove leap day (February 29)
 histtemp_formatted <- histtemp_formatted[!(histtemp_formatted$Month == 2 & histtemp_formatted$Day == 60), ]
 
-#### 2-HOURLY ####
+#### CALCULATE 2-HOURLY ####
 
 # get hourly temperature data from curve/photoperiod calculations
 historicalhourlytemps <- data.frame(stack_hourly_temps(histtemp_formatted,latitude=51.7734)) #weird prefix
@@ -206,15 +206,16 @@ two_day_temperature_treatments_filtered <- two_day_temperature_treatments_long %
 # save to a csv file in the data files folder
 write.csv(two_day_temperature_treatments_filtered, here("data_files", "egg_temperature_treatments_hourly.csv"), row.names = FALSE)
 
-#### DAILY #### 
+#### CALCULATE DAILY #### 
 
 # condense two hourly temperatures into daily means 
 daily_mean_temperature_treatments <- two_day_temperature_treatments_filtered %>%
   group_by(group_num, Date, jday, treatment) %>%
   summarise(temperature = mean(temperature)) %>%
-  ungroup()
+  ungroup() %>%
+  rename(date = Date)
 
-#### PLOT #### 
+#### PLOT 2-HOURLY #### 
 
 # plot the two-hour interval temperature treatments
 egg_temperature_treatments_hourly <- ggplot(two_day_temperature_treatments_filtered, 
@@ -243,6 +244,8 @@ egg_temperature_treatments_hourly
 ggsave(here("figures", "egg_temperature_treatments_hourly.png"), 
        plot = egg_temperature_treatments_hourly, width = 4, height = 3, dpi = 300)
 
+#### PLOT DAILY ####
+
 # make a data frame to label the treatments
 label_df <- data.frame(
   x = as.Date("2025-05-11"),
@@ -251,7 +254,7 @@ label_df <- data.frame(
 
 # plot the daily mean temperature treatments 
 egg_temperature_treatments_daily_experimental <- ggplot(daily_mean_temperature_treatments, 
-                                                        aes(x = Date, y = temperature, colour = treatment)) + 
+                                                        aes(x = date, y = temperature, colour = treatment)) + 
   geom_line(linewidth = 1) + 
   labs(x = "Date",
        y = "Temperature (°C)") +
@@ -287,3 +290,64 @@ egg_temperature_treatments_daily_experimental
 ggsave(here("figures", "egg_temperature_treatments_daily_experimental.png"), 
        plot = egg_temperature_treatments_daily_experimental, width = 6, height = 4, dpi = 300)
 
+#### MEAN VS AMBIENT ####
+
+# convert the experimental treatments back to wide format 
+daily_mean_temperature_treatments_wide <- daily_mean_temperature_treatments %>%
+  pivot_wider(names_from = treatment,
+              values_from = temperature)
+
+# convert date from a character to a date 
+egg_ambient_treatment$date <- as.Date(egg_ambient_treatment$date)
+
+# add the ambient data to the daily mean temperature treatments 
+egg_temperature_treatments_daily <- left_join(daily_mean_temperature_treatments_wide, 
+                                              egg_ambient_treatment, 
+                                              by = "date")
+
+# save as a csv in the data files folder
+write.csv(egg_temperature_treatments_daily, here("data_files", "egg_temperature_treatments_daily.csv"), row.names = FALSE)
+
+# convert to long format 
+egg_temperature_treatments_daily_long <- egg_temperature_treatments_daily %>%
+  pivot_longer(cols = hot:ambient,
+               names_to = "treatment",
+               values_to = "temperature")
+
+# filter for the mean and ambient treatments 
+mean_and_ambient_temperatures <-  egg_temperature_treatments_daily_long%>%
+  filter(treatment %in% c("mean", "ambient"))
+
+# change the order of the treatments for plotting 
+mean_and_ambient_temperatures$treatment <- factor(mean_and_ambient_temperatures$treatment, levels = c("ambient", "mean"))
+
+# plot the mean and ambient treatments as individual lines 
+egg_temperature_treatments_mean_ambient <- ggplot(mean_and_ambient_temperatures, 
+                                                   aes(x = date, 
+                                                       y = temperature, 
+                                                       colour = treatment)) + 
+  geom_line(linewidth = 0.7) + 
+  labs(title = "(b) Egg development",
+       x = "Date",
+       y = "Temperature (°C)",
+       color = "Treatment") +
+  scale_colour_manual(values = c("ambient" = "#777777",
+                                 "mean" = "#FFDB58")) +
+  scale_x_date(date_breaks = "1 month", 
+               date_labels = "%b %y") +
+  theme_bw() + 
+  theme(plot.title = element_text(hjust = 0.5, 
+                                  face = "bold", 
+                                  size = 11),
+        axis.title = element_text(size = 11),
+        axis.text = element_text(size = 10),
+        legend.text = element_text(size = 11.5),
+        legend.title = element_text(size = 11.5),
+        legend.position = "top")  
+
+# check it looks as expected
+egg_temperature_treatments_mean_ambient
+
+# save as a csv file in the figures folder
+ggsave(here("figures", "egg_temperature_treatments_mean_ambient.png"), 
+            plot = egg_temperature_treatments_mean_ambient, width = 6, height = 4, dpi = 300)
