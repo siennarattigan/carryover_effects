@@ -97,7 +97,7 @@ female_moths_clean <- adult_moths %>%
   filter(!adult_id %in% c("f1.cool", "f1.cold")) %>%
   drop_na(clutch_size)
 
-# plot the mean clutch size for each treatment with the raw data 
+# plot the mean clutch size for each temperature treatment with the raw data 
 clutch_size_plot <- ggplot(female_moths_clean, 
                            aes(x = pupa_temperature_treatment,
                                y = clutch_size, 

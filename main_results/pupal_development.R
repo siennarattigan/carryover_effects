@@ -73,13 +73,9 @@ ggsave(here("figures", "pupal_development_time_plot.png"),
 adult_moths_minus_control <- adult_moths %>%
   filter(pupa_temperature_treatment != "ambient")
 
-# reorder the temperature treatment so that the mean is the reference for modelling
+# reorder the temperature treatments so that the mean is the reference for modelling
 adult_moths_minus_control$pupa_temperature_treatment <- factor(adult_moths_minus_control$pupa_temperature_treatment, 
                                                                levels = c("mean", "cold", "cool", "warm", "hot"))
-
-# convert pupa development time to a numeric variable
-adult_moths_minus_control <- adult_moths_minus_control %>%
-  mutate(pupa_development_time = as.numeric(as.character(pupa_development_time)))
 
 # subset the numerical pupal temperature data and rename the columns
 pupal_temperature_treatments <- pupal_temperature_treatments %>%
@@ -130,7 +126,6 @@ adult_moths_minus_control <- adult_moths_minus_control %>%
     pupa_temperature_treatment == "warm" ~ 8.10,
     pupa_temperature_treatment == "hot" ~ 9.23))
 
-
 # model the effect of temperature on pupal development time, include a linear 
 # and quadratic component and clutch ID as a random effect
 pupal_development_time_model <- lmer(pupa_development_time ~ pupa_temperature_treatment_numerical + 
@@ -174,4 +169,3 @@ qqline(resid(pupal_development_time_model), col = "red")
 pupal_development_time_re <- ranef(pupal_development_time_model)$clutch_id[[1]]
 qqnorm(pupal_development_time_re)
 qqline(pupal_development_time_re, col = "red")
-
