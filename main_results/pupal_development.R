@@ -140,7 +140,8 @@ summary(pupal_development_time_model)
 
 # compare the full model to a reduced model without the squared term
 full_model <- lm(pupa_development_time ~ pupa_temperature_treatment_numerical + 
-                   I(pupa_temperature_treatment_numerical^2), data = adult_moths_minus_control)
+                   I(pupa_temperature_treatment_numerical^2), 
+                 data = adult_moths_minus_control)
 reduced_model <- lm(pupa_development_time ~ pupa_temperature_treatment_numerical, 
                     data = adult_moths_minus_control)
 
@@ -159,7 +160,6 @@ anova(full_model, null_model, test = "Chisq")
 # check the assumption of equal variance by plotting the residuals vs fitted values 
 plot(fitted(pupal_development_time_model), resid(pupal_development_time_model)) 
 abline(h = 0, col = "red")
-
 
 # check the normality of the residuals 
 qqnorm(resid(pupal_development_time_model)) 

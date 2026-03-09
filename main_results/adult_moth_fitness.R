@@ -213,4 +213,3 @@ abline(h = 0, col = "red")
 # check the normality of the residuals 
 qqnorm(resid(clutch_size_model)) 
 qqline(resid(clutch_size_model), col = "red")
-
