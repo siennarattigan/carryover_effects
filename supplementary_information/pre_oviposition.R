@@ -61,22 +61,18 @@ pre_oviposition_time_plot <- ggplot(female_moths_clean,
        y = "Pre-oviposition time (days)") +
   scale_fill_manual(values = temperature_treatment_colours) +
   scale_colour_manual(values = temperature_treatment_colours) +
-  #scale_x_discrete(labels = c("Cold", 
-   #                           "Cool", 
-    #                          "Mean", 
-     #                         "Warm", 
-      #                        "Hot", 
-       #                       "Ambient")) +
   theme_bw() +
   theme(axis.title = element_text(size = 11),
         axis.text = element_text(size = 10),
+        axis.title.x = element_text(margin = margin(t = 10)), 
+        axis.title.y = element_text(margin = margin(r = 10)),
         legend.position = "none")
 
 # look at the output 
 pre_oviposition_time_plot
 
 # save as a png in the figures folder 
-ggsave("pre_oviposition_time_plot.png", 
+ggsave(here("figures", "pre_oviposition_time_plot.png"), 
        plot = pre_oviposition_time_plot, width = 6, height = 4, dpi = 300)
 
 #### MODEL ####

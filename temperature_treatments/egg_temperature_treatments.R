@@ -220,7 +220,7 @@ daily_mean_temperature_treatments <- two_day_temperature_treatments_filtered %>%
 #### PLOT 2-HOURLY #### 
 
 # plot the two-hour interval temperature treatments
-egg_temperature_treatments_hourly <- ggplot(two_day_temperature_treatments_filtered, 
+egg_temperature_treatments_hourly_plot <- ggplot(two_day_temperature_treatments_filtered, 
                                             aes(x = Date, 
                                                 y = temperature, 
                                                 colour = treatment)) +
@@ -242,11 +242,11 @@ egg_temperature_treatments_hourly <- ggplot(two_day_temperature_treatments_filte
         legend.position = "none") 
 
 # look at the output 
-egg_temperature_treatments_hourly
+egg_temperature_treatments_hourly_plot
 
 # save as a csv file in the figures folder
-ggsave(here("figures", "egg_temperature_treatments_hourly.png"), 
-       plot = egg_temperature_treatments_hourly, width = 4, height = 3, dpi = 300)
+ggsave(here("figures", "egg_temperature_treatments_hourly_plot.png"), 
+       plot = egg_temperature_treatments_hourly_plot, width = 4, height = 3, dpi = 300)
 
 #### PLOT DAILY ####
 
@@ -257,7 +257,7 @@ label_df <- data.frame(
   group = c("Hot", "Warm", "Mean", "Cool", "Cold"))
 
 # plot the daily mean temperature treatments 
-egg_temperature_treatments_daily_experimental <- ggplot(daily_mean_temperature_treatments, 
+egg_temperature_treatments_daily_experimental_plot<- ggplot(daily_mean_temperature_treatments, 
                                                         aes(x = date,
                                                             y = temperature, 
                                                             colour = treatment)) + 
@@ -290,11 +290,11 @@ egg_temperature_treatments_daily_experimental <- ggplot(daily_mean_temperature_t
         legend.position = "none")
 
 # look at the output 
-egg_temperature_treatments_daily_experimental
+egg_temperature_treatments_daily_experimental_plot
 
 # save as a png file in the figures folder
-ggsave(here("figures", "egg_temperature_treatments_daily_experimental.png"), 
-       plot = egg_temperature_treatments_daily_experimental, width = 6, height = 4, dpi = 300)
+ggsave(here("figures", "egg_temperature_treatments_daily_experimental_plot.png"), 
+       plot = egg_temperature_treatments_daily_experimental_plot, width = 6, height = 4, dpi = 300)
 
 #### MEAN VS AMBIENT ####
 
@@ -330,7 +330,7 @@ mean_and_ambient_temperatures$treatment <- factor(mean_and_ambient_temperatures$
                                                   levels = c("ambient", "mean"))
 
 # plot the mean and ambient treatments as individual lines 
-egg_temperature_treatments_mean_ambient <- ggplot(mean_and_ambient_temperatures, 
+egg_temperature_treatments_mean_ambient_plot <- ggplot(mean_and_ambient_temperatures, 
                                                    aes(x = date, 
                                                        y = temperature, 
                                                        colour = treatment)) + 
@@ -354,8 +354,8 @@ egg_temperature_treatments_mean_ambient <- ggplot(mean_and_ambient_temperatures,
         legend.position = "top")  
 
 # check it looks as expected
-egg_temperature_treatments_mean_ambient
+egg_temperature_treatments_mean_ambient_plot
 
 # save as a csv file in the figures folder
-ggsave(here("figures", "egg_temperature_treatments_mean_ambient.png"), 
-            plot = egg_temperature_treatments_mean_ambient, width = 6, height = 4, dpi = 300)
+ggsave(here("figures", "egg_temperature_treatments_mean_ambient_plot.png"), 
+            plot = egg_temperature_treatments_mean_ambient_plot, width = 6, height = 4, dpi = 300)

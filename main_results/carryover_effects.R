@@ -92,7 +92,7 @@ emergence_vs_hatching_prediction$group <- factor(emergence_vs_hatching_predictio
                                                  levels = c("cold", "cool", "mean", "warm", "hot"))
 
 # plot the model prediction with confidence intervals and data points 
-emergence_vs_hatching <- ggplot() +
+emergence_vs_hatching_plot <- ggplot() +
   geom_line(data = emergence_vs_hatching_prediction, 
             aes(x = x, 
                 y = predicted, 
@@ -131,10 +131,10 @@ emergence_vs_hatching <- ggplot() +
         legend.justification = "center",
         plot.margin = margin(t = 10, r = 40, b = 10, l = 10))
 
-emergence_vs_hatching
+emergence_vs_hatching_plot
 
-ggsave(here("figures", "emergence_vs_hatching.png"), 
-            plot = emergence_vs_hatching, width = 6, height = 4, dpi = 300)
+ggsave(here("figures", "emergence_vs_hatching_plot.png"), 
+            plot = emergence_vs_hatching_plot, width = 6, height = 4, dpi = 300)
 
 #### (2) Effect of maternal emergence date on egg development time ####
 #### across egg temperature treatments ####
@@ -189,7 +189,7 @@ emergence_vs_egg_dev_prediction$group <- factor(emergence_vs_egg_dev_prediction$
                                                 levels = c("cold", "cool", "mean", "warm", "hot"))
 
 # plot the model prediction with confidence intervals and data points
-emergence_vs_egg_dev <- ggplot() +
+emergence_vs_egg_dev_plot <- ggplot() +
   geom_line(data = emergence_vs_egg_dev_prediction, 
             aes(x = x, 
                 y = predicted, 
@@ -229,8 +229,8 @@ emergence_vs_egg_dev <- ggplot() +
         plot.margin = margin(t = 10, r = 40, b = 10, l = 10))
 
 # look at the output
-emergence_vs_egg_dev
+emergence_vs_egg_dev_plot
 
 # save as a png in the figures folder
-ggsave(here("figures", "emergence_vs_egg_dev.png"), 
-       plot = emergence_vs_egg_dev, width = 6, height = 4, dpi = 300)
+ggsave(here("figures", "emergence_vs_egg_dev_plot.png"), 
+       plot = emergence_vs_egg_dev_plot, width = 6, height = 4, dpi = 300)

@@ -65,7 +65,7 @@ label_df <- data.frame(
   group = c("Hot", "Warm", "Mean", "Cool", "Cold"))
 
 # plot the experimental treatments as individual lines
-pupa_temperature_treatments_experimental <- ggplot(experimental_temperatures, 
+pupa_temperature_treatments_experimental_plot <- ggplot(experimental_temperatures, 
                                                    aes(x = date, 
                                                        y = temperature, 
                                                        colour = treatment)) + 
@@ -100,10 +100,10 @@ pupa_temperature_treatments_experimental <- ggplot(experimental_temperatures,
         axis.title.y = element_text(margin = margin(r = 10)),
         legend.position = "none")  
 
-pupa_temperature_treatments_experimental
+pupa_temperature_treatments_experimental_plot
 
-ggsave(here("figures", "pupa_temperature_treatments_experimental.png"), 
-            plot = pupa_temperature_treatments_experimental, width = 6, height = 4, dpi = 300)
+ggsave(here("figures", "pupa_temperature_treatments_experimental_plot.png"), 
+            plot = pupa_temperature_treatments_experimental_plot, width = 6, height = 4, dpi = 300)
 
 #### MEAN vs AMBIENT ####
 
@@ -115,7 +115,7 @@ mean_and_ambient_temperatures <- temperatures_long %>%
 mean_and_ambient_temperatures$treatment <- factor(mean_and_ambient_temperatures$treatment, levels = c("ambient", "mean"))
 
 # plot the mean and ambient treatments as individual lines 
-pupa_temperature_treatments_mean_ambient <- ggplot(mean_and_ambient_temperatures, 
+pupa_temperature_treatments_mean_ambient_plot <- ggplot(mean_and_ambient_temperatures, 
                                                    aes(x = date, 
                                                        y = temperature, 
                                                        colour = treatment)) + 
@@ -139,8 +139,8 @@ pupa_temperature_treatments_mean_ambient <- ggplot(mean_and_ambient_temperatures
         legend.position = "top")  
 
 # check it looks as expected
-pupa_temperature_treatments_mean_ambient
+pupa_temperature_treatments_mean_ambient_plot
 
 # save as a csv file in the figures folder
-ggsave(here("figures", "pupa_temperature_treatments_mean_ambient.png"), 
-            plot = pupa_temperature_treatments_mean_ambient, width = 6, height = 4, dpi = 300)
+ggsave(here("figures", "pupa_temperature_treatments_mean_ambient_plot.png"), 
+            plot = pupa_temperature_treatments_mean_ambient_plot, width = 6, height = 4, dpi = 300)

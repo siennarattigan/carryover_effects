@@ -34,7 +34,7 @@ emergence_success_percentages$pupa_outcome_grouped <- factor(emergence_success_p
 
 
 # plot pupal emergence success across substrate treatments 
-emergence_success_substrate <- ggplot(emergence_success_percentages,
+emergence_success_substrate_treatments_plot <- ggplot(emergence_success_percentages,
                                       aes(x = substrate_treatment, 
                                           y = percentage, 
                                           fill = pupa_outcome_grouped)) +
@@ -55,11 +55,11 @@ emergence_success_substrate <- ggplot(emergence_success_percentages,
         axis.title.y = element_text(margin = margin(r = 10)))
 
 # look at the output
-emergence_success_substrate
+emergence_success_substrate_treatments_plot
 
 # save as a png in the figures folder 
-ggsave(here("figures", "emergence_success_substrate.png"), 
-       plot = emergence_success_substrate, width = 6, height = 4, dpi = 300)
+ggsave(here("figures", "emergence_success_substrate_treatments_plot.png"), 
+       plot = emergence_success_substrate_treatments_plot, width = 6, height = 4, dpi = 300)
 
 #### MODEL ####
 

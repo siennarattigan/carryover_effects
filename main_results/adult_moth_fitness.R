@@ -52,7 +52,7 @@ label_df <- data.frame(
 # where: S(t previous) = survival probability at previous time step, ni = number
 # of individuals at risk (not emerged) just before time t, and di = number of 
 # events (number emergenced) at time t
-pupal_survival_analysis <- survfit2(Surv(time, status) ~ temperature, data = pupal_survival) %>% 
+pupal_survival_analysis_plot <- survfit2(Surv(time, status) ~ temperature, data = pupal_survival) %>% 
   ggsurvfit(linewidth = 0.9) +
   labs(x = "Pupal Development Time (days)",
        y = "Proportion of Pupae Not Emerged",
@@ -77,11 +77,11 @@ pupal_survival_analysis <- survfit2(Surv(time, status) ~ temperature, data = pup
 
 
 # look at the output 
-pupal_survival_analysis
+pupal_survival_analysis_plot
 
 # save as png file in figures folder 
-ggsave(here("figures", "pupal_survival_analysis.png"), 
-            plot = pupal_survival_analysis, width = 6, height = 4, dpi = 300)
+ggsave(here("figures", "pupal_survival_analysis_plot.png"), 
+            plot = pupal_survival_analysis_plot, width = 6, height = 4, dpi = 300)
 
 # carry out a Chi Squared analysis that assumes all temperature groups have the 
 # same survival distribution
