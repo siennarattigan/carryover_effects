@@ -1,0 +1,211 @@
+pupa_id ,clutch_id,source_tree_id,rearing_tree_id,translocation_treatment ,substrate_treatment ,pupa_temperature_treatment,pupa_mass_mg,pupa_mass_g,pupa_outcome
+106,o1a6,21184,m1,early,B,cold,42.8,0.0428,emerged
+107,o1b2,17484,20926,early,C,cold,33.1,0.0331,unemerged viable
+108,o1c1,17893,20390,match,D,cold,29.2,0.0292,unemerged viable
+109,o1c7,17115,sw10,late,D,cold,24.8,0.0248,unemerged viable
+110,o1d3,21184,m1,early,B,cold,28.9,0.0289,emerged
+111,o1d6,14510,sw10,late,D,cold,34.9,0.0349,unemerged viable
+112,o1d6,14510,sw10,late,C,cold,NA,NA,mouldy
+113,o1d6,14510,sw4,match,B,cold,35.3,0.0353,unemerged viable
+114,o1d8,16180,20766,match,B,cold,35.3,0.0353,unemerged viable
+115,o1e2,17484,m1,early,D,cold,22.1,0.0221,unemerged viable
+116,o2b7,16180,m1,early,A,cold,21.8,0.0218,unemerged viable
+117,o2b8,14511,sw10,late,F,cold,NA,NA,mouldy
+118,o2c1,14158,sw10,late,F,cold,22.6,0.0226,unemerged viable
+119,o2d9,17893,m1,early,F,cold,20.5,0.0205,unemerged viable
+120,o3b10,17307,20766,match,C,cold,NA,NA,mouldy
+121,o3c8,18178,20926,early,C,cold,29.5,0.0295,emerged
+122,o3d10,16091,sw10,late,E,cold,23.3,0.0233,unemerged not viable
+123,o3d10,16091,sw3,match,F,cold,31.6,0.0316,unemerged viable
+124,o3e2,16682,20926,early,A,cold,28.1,0.0281,unemerged viable
+125,o3e8,17484,sw11,match,D,cold,36.2,0.0362,emerged
+126,o4a1,17863,20466,late,B,cold,34.4,0.0344,emerged
+127,o4a2,17893,sw10,late,F,cold,33.4,0.0334,unemerged viable
+128,o4a5,19864,m1,early,D,cold,32.4,0.0324,unemerged fully developed moth
+129,o4b8,17863,20466,late,A,cold,NA,NA,mouldy
+130,o4c4,20400,19377,match,F,cold,NA,NA,mouldy
+131,o4c4,20400,19377,match,F,cold,21.5,0.0215,unemerged viable
+132,o4c5,14291,sw10,late,F,cold,30.7,0.0307,unemerged fully developed moth
+133,o4d10,14158,sw10,late,C,cold,37.1,0.0371,emerged
+134,o4d10,14158,sw10,late,F,cold,NA,NA,mouldy
+135,o4d2,17893,20390,match,F,cold,16.2,0.0162,unemerged not viable
+136,o4e1,18178,20265,late,F,cold,41.4,0.0414,unemerged viable
+137,o4e2,14511,sw5,match,D,cold,28.1,0.0281,mouldy
+138,o4e4,16682,sw10,late,C,cold,19.9,0.0199,unemerged viable
+139,o4e4,16682,sw11,match,D,cold,28.3,0.0283,unemerged viable
+140,o5a2,17484,20926,early,E,cold,12.3,0.0123,mouldy
+1,o1a9,16682,sw10,late,D,ambient,NA,NA,mouldy
+2,o1b2,17484,sw11,match,D,ambient,25.5,0.0255,mouldy
+3,o1b3,17321,m1,match,A,ambient,25.9,0.0259,unemerged not viable
+4,o1c1,17893,20390,match,E,ambient,NA,NA,mouldy
+5,o1c7,17115,17115,match,F,ambient,12.8,0.0128,unemerged not viable
+6,o1e3,17484,sw11,match,D,ambient,32.6,0.0326,unemerged not viable
+7,o2a2,17893,20390,match,E,ambient,28.8,0.0288,unemerged fully developed moth
+8,o2a4,17863,m1,match,E,ambient,25.3,0.0253,unemerged viable
+9,o2b4,16682,sw10,match,B,ambient,NA,NA,mouldy
+10,o2b4,16682,sw11,late,E,ambient,16,0.016,unemerged not viable
+11,o2b7,16180,20766,match,F,ambient,NA,NA,mouldy
+35,o2d3,14511,sw5,match,C,ambient,NA,NA,mouldy
+12,o2d8,16682,sw10,late,D,ambient,NA,NA,mouldy
+13,o2d9,17893,m1,early,C,ambient,32.7,0.0327,emerged
+14,o2d9,17893,m1,early,D,ambient,NA,NA,mouldy
+15,o2e2,17484,sw11,match,E,ambient,NA,NA,mouldy
+16,o3a3,17307,20766,match,C,ambient,24.8,0.0248,emerged
+17,o3a6,21184,20390,match,B,ambient,39.3,0.0393,emerged
+18,o3b10,17307,20766,match,B,ambient,40,0.04,emerged
+19,o3b8,17028,sw10,late,B,ambient,NA,NA,mouldy
+20,o3b8,17028,sw10,late,E,ambient,14.7,0.0147,unemerged not viable
+21,o3c1,17484,20926,early,A,ambient,34.7,0.0347,emerged
+22,o3c10,17907,m1,match,E,ambient,14.4,0.0144,unemerged not viable
+23,o3e2,16682,20926,early,D,ambient,25.5,0.0255,unemerged not viable
+24,o3e4,17307,20766,match,B,ambient,NA,NA,mouldy
+25,o3e8,17484,sw11,match,F,ambient,37.8,0.0378,emerged
+26,o4a2,17893,20390,match,F,ambient,17.7,0.0177,unemerged viable
+27,o4b6,19864,20466,match,B,ambient,39,0.039,emerged
+28,o4d4,16106,20708,match,B,ambient,48.1,0.0481,emerged
+29,o4e1,18178,20265,late,A,ambient,NA,NA,mouldy
+30,o4e2,14511,m1,early,B,ambient,43.3,0.0433,emerged
+31,o4e2,14511,m1,early,A,ambient,28.3,0.0283,emerged
+32,o5a1,17484,20926,early,C,ambient,30.2,0.0302,unemerged not viable
+33,o5a3,17893,sw10,late,A,ambient,39.7,0.0397,emerged
+34,o5a4,17907,20926,early,C,ambient,33.4,0.0334,unemerged not viable
+72,o1a8,18178,m1,match,D,cool,NA,NA,mouldy
+73,o1a9,16682,sw10,late,C,cool,23.2,0.0232,emerged
+74,o1b2,17484,20926,early,B,cool,48.1,0.0481,emerged
+75,o1b3,17321,m1,match,E,cool,NA,NA,mouldy
+76,o1e10,17115,sw10,late,B,cool,38.3,0.0383,emerged
+77,o1e10,17115,17115,match,F,cool,NA,NA,mouldy
+71,o1e7,17307,20265,late ,C,cool,NA,NA,mouldy
+78,o1e7,17307,20265,late,E,cool,17.7,0.0177,unemerged viable
+79,o2a2,17893,20390,match,F,cool,29.7,0.0297,unemerged not viable
+80,o2a6,17863,m1,match,E,cool,14,0.014,unemerged not viable
+81,o2b7,16180,20766,match,C,cool,20.8,0.0208,unemerged fully developed moth
+82,o2e4,17484,sw11,match,D,cool,18.5,0.0185,mouldy
+83,o2e9,19872,14308,match,A,cool,31.4,0.0314,emerged
+84,o2e9,19872,14308,match,A,cool,22.5,0.0225,emerged
+85,o2e9,19872,14308,match,C,cool,20.7,0.0207,unemerged fully developed moth
+86,o2e9,19872,14308,match,F,cool,18.4,0.0184,unemerged viable
+87,o3a3,17307,m1,early,B,cool,NA,NA,mouldy
+88,o3a4,16106,20708,match,F,cool,12.1,0.0121,unemerged viable
+89,o3b10,17307,20766,match,E,cool,33.1,0.0331,emerged
+90,o3d4,20400,19377,match,A,cool,22,0.022,emerged
+91,o3e3,17028,sw5,match,C,cool,NA,NA,mouldy
+92,o4a1,17863,m1,match,E,cool,NA,NA,mouldy
+93,o4a1,17863,20466,late,D,cool,21.2,0.0212,emerged
+94,o4a2,17893,20390,match,D,cool,22.3,0.0223,mouldy
+95,o4a5,19864,m1,early,F,cool,NA,NA,mouldy
+96,o4a5,19864,m1,early,F,cool,NA,NA,mouldy
+97,o4a7,21184,m1,early,D,cool,34.7,0.0347,unemerged fully developed moth
+98,o4b6,19864,20466,match,A,cool,36.1,0.0361,unemerged viable
+99,o4b8,17863,20466,late,E,cool,NA,NA,mouldy
+100,o4c4,20400,19377,match,A,cool,NA,NA,mouldy
+101,o4d10,14158,20529,match,C,cool,27.3,0.0273,unemerged viable
+102,o4d2,17893,20390,match,A,cool,NA,NA,mouldy
+103,o5a1,17484,20926,early,C,cool,NA,NA,mouldy
+104,o5a3,17893,sw10,late,A,cool,29.3,0.0293,emerged
+105,o5a4,17907,20926,early,D,cool,NA,NA,mouldy
+176,o1a6,21184,20390,match,E,hot,33.8,0.0338,emerged
+177,o1a7,17307,20766,match,B,hot,22.1,0.0221,unemerged viable
+178,o1a9,16682,sw10,late,B,hot,24.9,0.0249,unemerged not viable
+179,o1b9,14511,sw5,early,E,hot,NA,NA,mouldy
+180,o1d6,14510,sw10,late,C,hot,46.4,0.0464,mouldy
+181,o1d9,16682,sw11,match,D,hot,NA,NA,mouldy
+182,o1e2,17484,sw10,match,C,hot,13.6,0.0136,mouldy
+183,o1e3,17484,sw11,match,C,hot,31.7,0.0317,unemerged not viable
+184,o1e6,17907,m1,match,E,hot,24.7,0.0247,unemerged not viable
+185,o1e6,17907,m1,match,D,hot,NA,NA,mouldy
+186,o2c1,14158,sw10,late,E,hot,14,0.014,unemerged not viable
+187,o2c5,19864,20466,match,B,hot,25.6,0.0256,mouldy
+188,o2d9,17893,SW11,match,A,hot,38.1,0.0381,emerged
+189,o2e8,17028,sw5,match,C,hot,26.8,0.0268,mouldy
+190,o2e8,17028,sw5,match,D,hot,13.3,0.0133,unemerged not viable
+191,o2e9,19872,14308,match,C,hot,24,0.024,emerged
+192,o3b3,16091,sw3,match,F,hot,34.6,0.0346,unemerged fully developed moth
+193,o3c8,18178,20926,early,A,hot,31.7,0.0317,emerged
+194,o3d8,19864,20466,match,E,hot,NA,NA,mouldy
+195,o3e2,16682,20926,early,E,hot,10.6,0.0106,unemerged not viable
+196,o3e4,17307,20766,match,B,hot,42.7,0.0427,emerged
+197,o3e7,17484,20926,early,D,hot,13.1,0.0131,unemerged not viable
+198,o4a1,17863,20466,late,B,hot,NA,NA,mouldy
+199,o4b10,17893,20390,match,C,hot,NA,NA,mouldy
+200,o4e1,18178,m1,match,A,hot,NA,NA,mouldy
+201,o4e2,14511,m1,early,B,hot,33.9,0.0339,emerged
+202,o4e2,14511,m1,early,C,hot,30.6,0.0306,unemerged not viable
+203,o4e2,14511,sw5,match,D,hot,28.2,0.0282,unemerged fully developed moth
+204,o4e4,16682,sw10,late,B,hot,NA,NA,mouldy
+205,o4e6,19864,20466,early,E,hot,13.1,0.0131,unemerged not viable
+206,o4e9,17028,sw10,late,A,hot,NA,NA,mouldy
+207,o5a3,17893,sw10,late,A,hot,NA,NA,mouldy
+208,o5a3,17893,20390,match,D,hot,29.1,0.0291,unemerged not viable
+209,o5a3,17893,sw10,late,F,hot,10.4,0.0104,unemerged not viable
+210,o5a4,17907,M1,match,A,hot,44.8,0.0448,emerged
+36,o1a3,14511,sw5,match,A,mean,43.9,0.0439,emerged
+37,o1b2,17484,sw11,match,A,mean,38.1,0.0381,emerged
+38,o1b3,17321,m1,match,D,mean,NA,NA,mouldy
+39,o1c3,17907,m1,match,E,mean,30.8,0.0308,unemerged fully developed moth
+40,o1c3,17907,m1,match,F,mean,10.7,0.0107,unemerged not viable
+42,o1d9,16682,sw11,match,A,mean,31,0.031,mouldy
+43,o1e2,17484,sw10,match,F,mean,18.3,0.0183,unemerged viable
+44,o1e2,17484,m1,early,F,mean,NA,NA,mouldy
+45,o1e2,17484,SW10,match,B,mean,28.8,0.0288,emerged
+41,o1e7,17307,20265,late,C,mean,27.2,0.0272,unemerged not viable
+46,o2a5,17863,m1,match,A,mean,26.2,0.0262,unemerged not viable
+47,o2b2,16091,sw3,match,A,mean,NA,NA,mouldy
+48,o2b7,16180,20766,match,B,mean,NA,NA,mouldy
+49,o2b7,16180,20766,match,E,mean,12.2,0.0122,unemerged viable
+50,o2c6,21184,20390,match,D,mean,25.5,0.0255,unemerged not viable
+51,o2e10,19864,20466,match,A,mean,31.2,0.0312,emerged
+52,o2e2,17484,sw11,match,B,mean,35.4,0.0354,emerged
+53,o2e8,17028,sw5,match,C,mean,33.5,0.0335,unemerged not viable
+54,o2e9,19872,14308,match,A,mean,25.4,0.0254,emerged
+55,o3a6,21184,20390,match,B,mean,43.7,0.0437,emerged
+56,o3b10,17307,20766,match,B,mean,NA,NA,mouldy
+57,o3b4,16682,sw11,match,B,mean,32.9,0.0329,emerged
+58,o3c1,17484,20926,early,A,mean,34.9,0.0349,emerged
+59,o3c8,18178,20926,early,A,mean,29.6,0.0296,emerged
+60,o3c8,18178,20926,early,B,mean,36.7,0.0367,emerged
+61,o3c8,18178,20926,early,E,mean,25.9,0.0259,unemerged viable
+62,o3d10,16091,sw10,late,E,mean,26.1,0.0261,emerged
+63,o3d2,19864,20466,match,E,mean,33.2,0.0332,emerged
+64,o3d4,20400,m1,early,F,mean,NA,NA,mouldy
+65,o3e3,17028,sw5,match,C,mean,24,0.024,mouldy
+66,o4d4,16106,20708,match,B,mean,43.3,0.0433,emerged
+67,o4e2,14511,sw5,match,F,mean,12.2,0.0122,unemerged not viable
+68,o4e6,19864,20466,early,E,mean,30,0.03,emerged
+69,o5a2,17484,20926,early,A,mean,22.6,0.0226,unemerged not viable
+70,o5a4,17907,m1,match ,A,mean,33.7,0.0337,unemerged viable
+142,o1a3,14511,m1,early,D,warm,33.3,0.0333,unemerged fully developed moth
+143,o1a7,17307,20766,match,E,warm,43.3,0.0433,emerged
+144,o1a7,17307,20766,match,C,warm,NA,NA,mouldy
+145,o1c5,14291,sw9,early,E,warm,34.1,0.0341,emerged
+146,o1d5,14291,sw9,early,E,warm,20.1,0.0201,unemerged not viable
+147,o1e2,17484,m1,early,B,warm,NA,NA,mouldy
+148,o1e2,17484,sw10,match,C,warm,31.6,0.0316,unemerged viable
+149,o1e4,17484,20926,early,B,warm,NA,NA,mouldy
+150,o2c5,19864,20466,match,C,warm,24.3,0.0243,unemerged not viable
+141,o2d9,17893,M1,early,A,warm,NA,NA,mouldy
+151,o2d9,17893,20390,match,A,warm,NA,NA,mouldy
+152,o2d9,17893,m1,early,D,warm,30.3,0.0303,unemerged not viable
+153,o2d9,17893,m1,early,F,warm,3,0.003,unemerged not viable
+154,o2d9,17893,m1,early,F,warm,16.5,0.0165,unemerged not viable
+155,o2e10,19864,sw10,late,E,warm,27.2,0.0272,unemerged not viable
+156,o2e10,19864,sw10,late,E,warm,5,0.005,unemerged not viable
+157,o2e2,17484,sw11,match,D,warm,NA,NA,mouldy
+158,o2e3,17484,sw11,match,A,warm,33,0.033,emerged
+159,o3a1,19864,m1,early,F,warm,NA,NA,mouldy
+160,o3a3,17307,m1,early,F,warm,NA,NA,mouldy
+161,o3a3,17307,m1,early,A,warm,14.7,0.0147,unemerged not viable
+162,o3a4,16106,20708,match,F,warm,15.9,0.0159,unemerged not viable
+163,o3a5,14158,20529,match,C,warm,12.5,0.0125,mouldy
+164,o3b4,16682,sw11,match,B,warm,12.6,0.0126,unemerged not viable
+165,o3c1,17484,sw11,match,B,warm,NA,NA,mouldy
+166,o3e2,16682,20926,early,C,warm,35,0.035,unemerged fully developed moth
+167,o3e4,17307,20766,match,E,warm,42,0.042,emerged
+168,o4a1,17863,20466,late,C,warm,NA,NA,mouldy
+169,o4a10,16091,sw10,late,D,warm,17.9,0.0179,unemerged viable
+170,o4a2,17893,20390,match,E,warm,26.2,0.0262,unemerged viable
+171,o4b4,17307,20766,match,C,warm,NA,NA,mouldy
+172,o4c4,20400,19377,match,F,warm,12.4,0.0124,unemerged not viable
+173,o4c5,14291,sw10,late,D,warm,30.7,0.0307,emerged
+174,o4c5,14291,sw10,late,A,warm,26.2,0.0262,emerged
+175,o5a3,17893,sw10,late,F,warm,21.7,0.0217,unemerged not viable
