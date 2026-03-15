@@ -13,12 +13,12 @@ library(tidyverse)
 pupa_temperature_treatments <- read.csv(here("data_files", "pupa_temperature_treatments_daily.csv"))
 
 # set up a common colour palette for plots
-temperature_treatment_colours <- c("cold" = "#1965AE",
-                                   "cool" = "#3FAB5C",
-                                   "mean" = "#FFDB58",
-                                   "warm" = "#E66815", 
-                                   "hot" = "#DE1117", 
-                                   "ambient" = "#777777") 
+temperature_treatment_colours <- c("cold" = "#2166AC",
+                                   "cool" = "#63BFB4",
+                                   "mean" = "#FDDC7A",
+                                   "warm" = "#EF8A62", 
+                                   "hot" = "#B2182B",
+                                   "ambient" = "#777777")
 
 #### CLEAN #### 
 
@@ -59,7 +59,7 @@ experimental_temperatures <- temperatures_long %>%
   filter(treatment %in% c("cold", "cool", "mean", "warm", "hot"))
 
 # make a data frame to label the treatments 
-label_df <- data.frame(
+label_df_pupae <- data.frame(
   x = as.Date("2025-01-10"),
   y = c(8.5, 6.75, 4, 1.5, -0.25),
   group = c("Hot", "Warm", "Mean", "Cool", "Cold"))
@@ -69,18 +69,19 @@ pupa_temperature_treatments_experimental_plot <- ggplot(experimental_temperature
                                                    aes(x = date, 
                                                        y = temperature, 
                                                        colour = treatment)) + 
-  geom_line(linewidth = 1) + 
-  labs(x = "Date",
+  geom_line(linewidth = 0.7) + 
+  labs(title = "(a) Pupae and emerged adults",
+       x = "Date",
        y = "Temperature (°C)",
        color = "Treatment") +
-  geom_text(data = label_df,
+  geom_text(data = label_df_pupae,
             aes(x = x, 
                 y = y, 
                 label = group, 
                 color = group),
             fontface = "italic",
             hjust = 0,
-            size = 3.5,
+            size = 3,
             colour = "black") +
   expand_limits(x = as.Date("2025-01-17")) +
   scale_colour_manual(values = temperature_treatment_colours) +
@@ -89,53 +90,53 @@ pupa_temperature_treatments_experimental_plot <- ggplot(experimental_temperature
                             by = "1 month"),
                date_labels = "%b %y",
                limits = c(as.Date("2024-07-04"),
-                          as.Date("2025-01-17"))) +
+                          as.Date("2025-02-07"))) +
+  scale_y_continuous(limits = c(-5,25)) +
   theme_bw() + 
   theme(plot.title = element_text(hjust = 0.5, 
                                   face = "bold",
                                   size = 11),
         axis.title = element_text(size = 11),
-        axis.text = element_text(size = 10),
-        axis.title.x = element_text(margin = margin(t = 10)), 
-        axis.title.y = element_text(margin = margin(r = 10)),
+        axis.text = element_text(size = 9),
+        axis.text.x = element_text(angle = 30, hjust = 1),
         legend.position = "none")  
 
+# look at the output
 pupa_temperature_treatments_experimental_plot
-
-ggsave(here("figures", "pupa_temperature_treatments_experimental_plot.png"), 
-            plot = pupa_temperature_treatments_experimental_plot, width = 6, height = 4, dpi = 300)
 
 #### MEAN vs AMBIENT ####
 
 # filter for the mean and ambient treatments 
-mean_and_ambient_temperatures <- temperatures_long %>%
+mean_and_ambient_temperatures_pupae <- temperatures_long %>%
   filter(treatment %in% c("mean", "ambient"))
 
 # change the order of the treatments for plotting 
-mean_and_ambient_temperatures$treatment <- factor(mean_and_ambient_temperatures$treatment, levels = c("ambient", "mean"))
+mean_and_ambient_temperatures_pupae$treatment <- factor(mean_and_ambient_temperatures_pupae$treatment, levels = c("ambient", "mean"))
 
 # plot the mean and ambient treatments as individual lines 
-pupa_temperature_treatments_mean_ambient_plot <- ggplot(mean_and_ambient_temperatures, 
+pupa_temperature_treatments_mean_ambient_plot <- ggplot(mean_and_ambient_temperatures_pupae, 
                                                    aes(x = date, 
                                                        y = temperature, 
                                                        colour = treatment)) + 
-  geom_line(linewidth = 0.7) + 
+  geom_line(linewidth = 0.6) + 
   labs(title = "(a) Pupal development",
        x = "Date",
        y = "Temperature (°C)",
        color = "Treatment") +
   scale_colour_manual(values = c("ambient" = "#777777",
-                                 "mean" = "#FFDB58")) +
+                                 "mean" = "#FDDC7A")) +
   scale_x_date(date_breaks = "1 month", 
                date_labels = "%b %y") +
+  scale_y_continuous(limits = c(-5, 25)) +
   theme_bw() + 
   theme(plot.title = element_text(hjust = 0.5, 
                                   face = "bold", 
                                   size = 11),
         axis.title = element_text(size = 11),
         axis.text = element_text(size = 10),
-        legend.text = element_text(size = 11.5),
-        legend.title = element_text(size = 11.5),
+        legend.text = element_text(size = 11),
+        legend.title = element_text(size = 11),
+        axis.text.x = element_text(angle = 30, hjust = 1),
         legend.position = "top")  
 
 # check it looks as expected

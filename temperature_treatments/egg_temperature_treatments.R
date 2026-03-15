@@ -11,17 +11,18 @@ library(here)
 library(tidyverse)
 library(lubridate)
 library(chillR)
+library(patchwork)
 
 # data
 histtemp <- read.csv(here("data_files", "daily_temp_minmax_1960_to_2016.csv"))
 egg_ambient_treatment <- read.csv(here("data_files", "egg_ambient_treatment.csv"))
 
 # set up a common colour palette for plots
-temperature_treatment_colours <- c("cold" = "#1965AE",
-                                   "cool" = "#3FAB5C",
-                                   "mean" = "#FFDB58",
-                                   "warm" = "#E66815", 
-                                   "hot" = "#DE1117", 
+temperature_treatment_colours <- c("cold" = "#2166AC",
+                                   "cool" = "#63BFB4",
+                                   "mean" = "#FDDC7A",
+                                   "warm" = "#EF8A62", 
+                                   "hot" = "#B2182B",
                                    "ambient" = "#777777")
 
 #### CLEAN ####
@@ -251,9 +252,9 @@ ggsave(here("figures", "egg_temperature_treatments_hourly_plot.png"),
 #### PLOT DAILY ####
 
 # make a data frame to label the treatments
-label_df <- data.frame(
+label_df_eggs <- data.frame(
   x = as.Date("2025-05-11"),
-  y = c(14, 12.75, 11.25, 9.75, 8.5),
+  y = c(15, 13.5, 12, 10.5, 9),
   group = c("Hot", "Warm", "Mean", "Cool", "Cold"))
 
 # plot the daily mean temperature treatments 
@@ -261,17 +262,18 @@ egg_temperature_treatments_daily_experimental_plot<- ggplot(daily_mean_temperatu
                                                         aes(x = date,
                                                             y = temperature, 
                                                             colour = treatment)) + 
-  geom_line(linewidth = 1) + 
-  labs(x = "Date",
+  geom_line(linewidth = 0.7) + 
+  labs(title = "(b) Eggs and hatched larvae",
+       x = "Date",
        y = "Temperature (°C)") +
-  geom_text(data = label_df,
+  geom_text(data = label_df_eggs,
             aes(x = x,
                 y = y, 
                 label = group, 
                 colour = group),
             fontface = "italic",
             hjust = 0,
-            size = 3.5,
+            size = 3,
             colour = "black") +
   scale_colour_manual(values = temperature_treatment_colours) +
   scale_x_date(breaks = seq(as.Date("2025-01-08"),
@@ -279,22 +281,28 @@ egg_temperature_treatments_daily_experimental_plot<- ggplot(daily_mean_temperatu
                             by = "1 month"),
                date_labels = "%b %y",
                limits = c(as.Date("2025-01-08"),
-                          as.Date("2025-05-15"))) + 
-  scale_y_continuous(limits = c(-5, 15)) +
+                          as.Date("2025-05-30"))) + 
+  scale_y_continuous(limits = c(-5, 25)) +
   theme_bw() + 
   theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 11),
         axis.title = element_text(size = 11),
-        axis.text = element_text(size = 10),
-        axis.title.x = element_text(margin = margin(t = 10)), 
-        axis.title.y = element_text(margin = margin(r = 10)),
+        axis.text = element_text(size = 9),
+        axis.text.x = element_text(angle = 30, hjust = 1),
         legend.position = "none")
 
 # look at the output 
 egg_temperature_treatments_daily_experimental_plot
 
-# save as a png file in the figures folder
-ggsave(here("figures", "egg_temperature_treatments_daily_experimental_plot.png"), 
-       plot = egg_temperature_treatments_daily_experimental_plot, width = 6, height = 4, dpi = 300)
+# combine the pupa and egg daily temperature profile plots
+temperautre_treatments_combined <- (pupa_temperature_treatments_experimental_plot |
+                                      egg_temperature_treatments_daily_experimental_plot)
+  
+# look at the output
+temperautre_treatments_combined
+
+# save as a png in the figures folder 
+ggsave(here("figures", "temperature_treatments_combined_plot.png"), 
+       plot = temperautre_treatments_combined, width = 6, height = 3, dpi = 300)
 
 #### MEAN VS AMBIENT ####
 
@@ -322,35 +330,39 @@ egg_temperature_treatments_daily_long <- egg_temperature_treatments_daily %>%
                values_to = "temperature")
 
 # filter for the mean and ambient treatments 
-mean_and_ambient_temperatures <-  egg_temperature_treatments_daily_long%>%
+mean_and_ambient_temperatures_eggs <-  egg_temperature_treatments_daily_long%>%
   filter(treatment %in% c("mean", "ambient"))
 
 # change the order of the treatments for plotting 
-mean_and_ambient_temperatures$treatment <- factor(mean_and_ambient_temperatures$treatment, 
+mean_and_ambient_temperatures_eggs$treatment <- factor(mean_and_ambient_temperatures_eggs$treatment, 
                                                   levels = c("ambient", "mean"))
 
 # plot the mean and ambient treatments as individual lines 
-egg_temperature_treatments_mean_ambient_plot <- ggplot(mean_and_ambient_temperatures, 
+egg_temperature_treatments_mean_ambient_plot <- ggplot(mean_and_ambient_temperatures_eggs, 
                                                    aes(x = date, 
                                                        y = temperature, 
                                                        colour = treatment)) + 
-  geom_line(linewidth = 0.7) + 
+  geom_line(linewidth = 0.6) + 
   labs(title = "(b) Egg development",
        x = "Date",
        y = "Temperature (°C)",
        color = "Treatment") +
   scale_colour_manual(values = c("ambient" = "#777777",
-                                 "mean" = "#FFDB58")) +
+                                 "mean" = "#FDDC7A")) +
   scale_x_date(date_breaks = "1 month", 
-               date_labels = "%b %y") +
+               date_labels = "%b %y",
+               limits = c(as.Date("2025-01-01"),
+                          as.Date("2025-05-10"))) +
+  scale_y_continuous(limits = c(-5, 25)) +
   theme_bw() + 
   theme(plot.title = element_text(hjust = 0.5, 
                                   face = "bold", 
                                   size = 11),
         axis.title = element_text(size = 11),
         axis.text = element_text(size = 10),
-        legend.text = element_text(size = 11.5),
-        legend.title = element_text(size = 11.5),
+        legend.text = element_text(size = 11),
+        legend.title = element_text(size = 11),
+        axis.text.x = element_text(angle = 30, hjust = 1),
         legend.position = "top")  
 
 # check it looks as expected
@@ -358,4 +370,19 @@ egg_temperature_treatments_mean_ambient_plot
 
 # save as a csv file in the figures folder
 ggsave(here("figures", "egg_temperature_treatments_mean_ambient_plot.png"), 
-            plot = egg_temperature_treatments_mean_ambient_plot, width = 6, height = 4, dpi = 300)
+            plot = egg_temperature_treatments_mean_ambient_plot, width = 6, height = 3, dpi = 300)
+
+# combine pupal and egg mean vs ambient comparison plots 
+mean_ambient_temperatures_combined <-   (pupa_temperature_treatments_mean_ambient_plot |
+                                           egg_temperature_treatments_mean_ambient_plot) +
+  plot_layout(guides = "collect") & 
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 11), 
+        legend.position = "bottom",
+        legend.margin = margin(t = -8, unit = "pt"))
+
+# look at the output 
+mean_ambient_temperatures_combined 
+
+# save as a png in the figures folder
+ggsave(here("figures", "mean_ambient_temperatures_combined_plot.png"), 
+       plot = mean_ambient_temperatures_combined, width = 6, height = 4, dpi = 300)
