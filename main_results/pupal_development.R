@@ -99,30 +99,30 @@ mean_pupal_development_times <- adult_moths %>%
 # look at the output
 print(mean_pupal_development_times)
 
-# create two objects, one with the temperature treatments and the other with the 
-# mean pupal development times 
-treatment_names <- c("ambient", "cold", "cool", "mean", "warm", "hot")
-mean_development_time <- c(147, 168, 144, 145, 161, 169)
-
-# calculate the mean temperature in the 7 days before the mean development time
-# for each temperature treatment
-seven_day_mean_temperatures <- mapply(function(treatment, days) {
-  start_day <- days - 6
-  mean(pupal_temperature_treatments[[treatment]][start_day:days], na.rm = TRUE)}, 
-  treatment_names, mean_development_time)
-
+# calculate the mean temperature between the pupae entering the incubators and 
+# the mean development time in each temperature treatment
+mean_temps_pupae <- pupal_temperature_treatments %>%
+  mutate(time = row_number()) %>% 
+  pivot_longer(cols = -time,
+               names_to = "pupa_temperature_treatment",
+               values_to = "temperature") %>%
+  left_join(mean_pupal_development_times, by = "pupa_temperature_treatment") %>%
+  filter(time <= mean_development_time) %>%
+  group_by(pupa_temperature_treatment) %>%
+  summarise(mean_temperature = mean(temperature))
+  
 # look at the output
-seven_day_mean_temperatures
+mean_temps_pupae
 
 # assign the categorical temperature treatments a numerical values using mean 
-# temperature in the 7 days before the mean development time for each treatment
+# temperature experienced before the mean development time for each treatment
 adult_moths_minus_control <- adult_moths_minus_control %>%
   mutate(pupa_temperature_treatment_numerical = case_when(
-    pupa_temperature_treatment == "mean" ~ 6.24,
-    pupa_temperature_treatment == "cold" ~ 0.29,
-    pupa_temperature_treatment == "cool" ~ 4.37,
-    pupa_temperature_treatment == "warm" ~ 8.10,
-    pupa_temperature_treatment == "hot" ~ 9.23))
+    pupa_temperature_treatment == "mean" ~ 13.5,
+    pupa_temperature_treatment == "cold" ~ 7.23,
+    pupa_temperature_treatment == "cool" ~ 10.4,
+    pupa_temperature_treatment == "warm" ~ 15.9,
+    pupa_temperature_treatment == "hot" ~ 17.5))
 
 # model the effect of temperature on pupal development time, include a linear 
 # and quadratic component and clutch ID as a random effect

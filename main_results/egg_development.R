@@ -169,7 +169,6 @@ egg_subcltuches <- egg_subcltuches %>%
   mutate(halfdate = coalesce(halfdate_large, halfdate_small)) %>%
   select(-halfdate_large, -halfdate_small)
 
-
 # filter the data to remove subclutches from females that were mated twice or 
 # mated with a male in a different treatment
 egg_subcltuches_clean <- egg_subcltuches %>%
@@ -261,30 +260,30 @@ mean_egg_development_times <-  egg_subcltuches_clean_hatch %>%
 # look at the output 
 print(mean_egg_development_times)
 
-# create two objects, one with the temperature treatments and the other with the 
-# mean egg development times
-treatment_names <- c("cold", "cool", "mean", "warm", "hot", "ambient")
-mean_egg_development_time <- c(161, 153, 141, 125, 114, 122)
+# calculate the mean temperature between the egg entering the incubators and 
+# the mean development time in each temperature treatment
+mean_temps_eggs <- egg_temperature_treatments %>%
+  mutate(time = row_number()) %>% 
+  pivot_longer(cols = -time,
+               names_to = "egg_temperature_treatment",
+               values_to = "temperature") %>%
+  left_join(mean_egg_development_times, by = "egg_temperature_treatment") %>%
+  filter(time <= mean_development_time) %>%
+  group_by(egg_temperature_treatment) %>%
+  summarise(mean_temperature = mean(temperature))
 
-# calculate the mean temperature in the 7 days before the mean development time
-# for each temperature treatment
-seven_day_mean_temperatures <- mapply(function(treatment, days) {
-  start_day <- days - 6
-  mean(egg_temperature_treatments[[treatment]][start_day:days], na.rm = TRUE)
-}, treatment_names, mean_egg_development_time)
-
-# look at the output 
-print(seven_day_mean_temperatures)
+# look at the output
+mean_temps_eggs
 
 # assign the categorical temperature treatments a numerical values using mean 
-# temperature in the 7 days before the mean development time for each treatment
+# temperature experienced before the mean development time for each treatment
 egg_subcltuches_clean_hatch_minus_control <- egg_subcltuches_clean_hatch_minus_control %>%
   mutate(egg_temperature_treatment_numerical = case_when(
-    egg_temperature_treatment == "mean" ~ 11.62,
-    egg_temperature_treatment == "cold" ~ 10.88,
-    egg_temperature_treatment == "cool" ~ 11.07,
-    egg_temperature_treatment == "warm" ~ 11.49,
-    egg_temperature_treatment == "hot" ~ 11.77))
+    egg_temperature_treatment == "mean" ~ 6.12,
+    egg_temperature_treatment == "cold" ~ 2.34,
+    egg_temperature_treatment == "cool" ~ 3.86,
+    egg_temperature_treatment == "warm" ~ 8.39,
+    egg_temperature_treatment == "hot" ~ 9.56))
 
 # model the effect of temperature treatment on egg development time, include female ID as a random effect 
 egg_development_time_model <- lmer(egg_development_time ~ egg_temperature_treatment + 
@@ -292,10 +291,6 @@ egg_development_time_model <- lmer(egg_development_time ~ egg_temperature_treatm
 
 # look at the output
 summary(egg_development_time_model)
-
-
-## // check whether egg temperature  treatment should be continuous or categorical 
-
 
 #### CHECK FIT ####
 

@@ -13,6 +13,7 @@ library(tidyverse)
 library(survival)
 library(ggsurvfit)
 library(glmmTMB)
+library(patchwork)
 
 # data
 adult_moths <- read.csv(here("data_files", "adult_moths.csv"))
@@ -153,19 +154,18 @@ female_moths_clean_minus_control$pupa_temperature_treatment <- factor(female_mot
                                                                       levels = c("mean", "cold", "cool", "warm", "hot"))
 
 # convert clutch size from a character to an integer
-female_moths_clean$clutch_size <- as.integer(female_moths_clean$clutch_size)
+female_moths_clean_minus_control$clutch_size <- as.integer(female_moths_clean_minus_control$clutch_size)
 
 # assign the categorical temperature treatments a numerical values using mean 
-# temperature in the 7 days before the mean development time for each treatments.
+# temperature experienced before the mean development time for each treatment.
 # these values are calculated in the pupal_development.R script pre modelling 
 female_moths_clean_minus_control <- female_moths_clean_minus_control %>%
   mutate(pupa_temperature_treatment_numerical = case_when(
-    pupa_temperature_treatment == "mean" ~ 6.24,
-    pupa_temperature_treatment == "cold" ~ 0.29,
-    pupa_temperature_treatment == "cool" ~ 4.37,
-    pupa_temperature_treatment == "warm" ~ 8.10,
-    pupa_temperature_treatment == "hot" ~ 9.23))
-
+    pupa_temperature_treatment == "mean" ~ 13.5,
+    pupa_temperature_treatment == "cold" ~ 7.23,
+    pupa_temperature_treatment == "cool" ~ 10.4,
+    pupa_temperature_treatment == "warm" ~ 15.9,
+    pupa_temperature_treatment == "hot" ~ 17.5))
 
 # check for over dispersion in clutch size
 mean_clutch_size <- mean(female_moths_clean_minus_control$clutch_size)
