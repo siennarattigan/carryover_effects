@@ -39,12 +39,12 @@ pupal_development_time_plot <- ggplot(adult_moths,
                                           colour = pupa_temperature_treatment)) +
   geom_jitter(width = 0.2, 
               alpha = 0.7, 
-              size = 2.5, 
+              size = 3, 
               stroke = 0) +
   stat_summary(fun = mean, 
                geom = "crossbar", 
                width = 0.5,
-               linewidth = 0.6, 
+               linewidth = 0.8, 
                alpha = 1, 
                lineend = "round") +
   geom_vline(xintercept = 5.5, linetype = "dashed", color = "black", linewidth = 1) +
@@ -62,7 +62,7 @@ pupal_development_time_plot <- ggplot(adult_moths,
 pupal_development_time_plot
 
 # save as a png file in figures folder
-ggsave(here("figures", "pupal_development_time_plot.png"), 
+ggsave(here("figures", "figure3.png"), 
             plot = pupal_development_time_plot, width = 6, height = 4, dpi = 300)
 
 #### MODEL ####

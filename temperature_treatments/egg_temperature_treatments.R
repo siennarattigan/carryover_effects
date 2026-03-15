@@ -245,10 +245,6 @@ egg_temperature_treatments_hourly_plot <- ggplot(two_day_temperature_treatments_
 # look at the output 
 egg_temperature_treatments_hourly_plot
 
-# save as a csv file in the figures folder
-ggsave(here("figures", "egg_temperature_treatments_hourly_plot.png"), 
-       plot = egg_temperature_treatments_hourly_plot, width = 4, height = 3, dpi = 300)
-
 #### PLOT DAILY ####
 
 # make a data frame to label the treatments
@@ -301,7 +297,7 @@ temperautre_treatments_combined <- (pupa_temperature_treatments_experimental_plo
 temperautre_treatments_combined
 
 # save as a png in the figures folder 
-ggsave(here("figures", "temperature_treatments_combined_plot.png"), 
+ggsave(here("figures", "figure2.png"), 
        plot = temperautre_treatments_combined, width = 6, height = 3, dpi = 300)
 
 #### MEAN VS AMBIENT ####
@@ -368,10 +364,6 @@ egg_temperature_treatments_mean_ambient_plot <- ggplot(mean_and_ambient_temperat
 # check it looks as expected
 egg_temperature_treatments_mean_ambient_plot
 
-# save as a csv file in the figures folder
-ggsave(here("figures", "egg_temperature_treatments_mean_ambient_plot.png"), 
-            plot = egg_temperature_treatments_mean_ambient_plot, width = 6, height = 3, dpi = 300)
-
 # combine pupal and egg mean vs ambient comparison plots 
 mean_ambient_temperatures_combined <-   (pupa_temperature_treatments_mean_ambient_plot |
                                            egg_temperature_treatments_mean_ambient_plot) +
@@ -384,5 +376,5 @@ mean_ambient_temperatures_combined <-   (pupa_temperature_treatments_mean_ambien
 mean_ambient_temperatures_combined 
 
 # save as a png in the figures folder
-ggsave(here("figures", "mean_ambient_temperatures_combined_plot.png"), 
+ggsave(here("figures", "figureS3.png"), 
        plot = mean_ambient_temperatures_combined, width = 6, height = 4, dpi = 300)

@@ -209,8 +209,8 @@ egg_development_time_plot <- ggplot(egg_subcltuches_clean_hatch,
   stat_summary(fun = mean, 
                geom = "crossbar", 
                width = 0.5,
-               linewidth = .8, 
-               alpha = 0.8, 
+               linewidth = 0.8, 
+               alpha = 1, 
                lineend = "round") +
   geom_vline(xintercept = 5.5, 
              linetype = "dashed",
@@ -232,7 +232,7 @@ egg_development_time_plot <- ggplot(egg_subcltuches_clean_hatch,
 egg_development_time_plot
 
 # save as a png in the figures folder
-ggsave(here("figures", "egg_development_time_plot.png"),
+ggsave(here("figures", "figure5.png"),
        plot = egg_development_time_plot, width = 6, height = 4, dpi = 300)
 
 #### MODEL ####

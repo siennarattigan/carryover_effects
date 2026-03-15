@@ -17,13 +17,12 @@ pupal_temperature_treatments <- read.csv(here("data_files", "pupa_temperature_tr
 adult_moths$pupa_temperature_treatment <- factor(adult_moths$pupa_temperature_treatment,
                                                  levels = c("cold", "cool", "mean", "warm", "hot", "ambient"))
 # set up a common colour palette for plots
-temperature_treatment_colours <- c("cold" = "#1965AE",
-                                   "cool" = "#3FAB5C",
-                                   "mean" = "#FFDB58",
-                                   "warm" = "#E66815", 
-                                   "hot" = "#DE1117", 
+temperature_treatment_colours <- c("cold" = "#2166AC",
+                                   "cool" = "#63BFB4",
+                                   "mean" = "#FDDC7A",
+                                   "warm" = "#EF8A62", 
+                                   "hot" = "#B2182B",
                                    "ambient" = "#777777") 
-
 
 
 #### PLOT ####
@@ -51,7 +50,7 @@ pre_oviposition_time_plot <- ggplot(female_moths_clean,
                geom = "crossbar", 
                width = 0.5,
                linewidth = .8, 
-               alpha = 0.8, 
+               alpha = 1, 
                lineend = "round") +
   geom_vline(xintercept = 5.5, 
              linetype = "dashed", 
@@ -72,7 +71,7 @@ pre_oviposition_time_plot <- ggplot(female_moths_clean,
 pre_oviposition_time_plot
 
 # save as a png in the figures folder 
-ggsave(here("figures", "pre_oviposition_time_plot.png"), 
+ggsave(here("figures", "figureS4.png"), 
        plot = pre_oviposition_time_plot, width = 6, height = 4, dpi = 300)
 
 #### MODEL ####

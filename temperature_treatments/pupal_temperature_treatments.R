@@ -141,7 +141,3 @@ pupa_temperature_treatments_mean_ambient_plot <- ggplot(mean_and_ambient_tempera
 
 # check it looks as expected
 pupa_temperature_treatments_mean_ambient_plot
-
-# save as a csv file in the figures folder
-ggsave(here("figures", "pupa_temperature_treatments_mean_ambient_plot.png"), 
-            plot = pupa_temperature_treatments_mean_ambient_plot, width = 6, height = 4, dpi = 300)

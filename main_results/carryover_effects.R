@@ -131,10 +131,8 @@ emergence_vs_hatching_plot <- ggplot() +
         legend.justification = "center",
         plot.margin = margin(t = 10, r = 40, b = 10, l = 10))
 
+# look at the output
 emergence_vs_hatching_plot
-
-ggsave(here("figures", "emergence_vs_hatching_plot.png"), 
-            plot = emergence_vs_hatching_plot, width = 6, height = 4, dpi = 300)
 
 #### (2) Effect of maternal emergence date on egg development time ####
 #### across egg temperature treatments ####
@@ -232,5 +230,5 @@ emergence_vs_egg_dev_plot <- ggplot() +
 emergence_vs_egg_dev_plot
 
 # save as a png in the figures folder
-ggsave(here("figures", "emergence_vs_egg_dev_plot.png"), 
+ggsave(here("figures", "figure6.png"), 
        plot = emergence_vs_egg_dev_plot, width = 6, height = 4, dpi = 300)
