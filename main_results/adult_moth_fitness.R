@@ -54,7 +54,8 @@ label_df <- data.frame(
 # events (number emergenced) at time t
 pupal_survival_analysis_plot <- survfit2(Surv(time, status) ~ temperature, data = pupal_survival) %>% 
   ggsurvfit(linewidth = 0.8) +
-  labs(x = "Pupal Development Time (days)",
+  labs(title = "(a) Survival",
+       x = "Pupal Development Time (days)",
        y = "Proportion Not Emerged",
        color = "Pupa Temperature Treatment") +
   geom_text(data = label_df,
@@ -69,17 +70,16 @@ pupal_survival_analysis_plot <- survfit2(Surv(time, status) ~ temperature, data 
   scale_colour_manual(values = temperature_treatment_colours) +
   coord_cartesian(xlim = c(100, 210)) + 
   theme_bw() +
-  theme(axis.title = element_text(size = 11),
+  theme(plot.title = element_text(hjust = 0.5, 
+                                  face = "bold", 
+                                  size = 11),
+        axis.title = element_text(size = 11),
         axis.text = element_text(size = 9),
         legend.position = "none")
 
 
 # look at the output 
 pupal_survival_analysis_plot
-
-# save as png file in figures folder 
-ggsave(here("figures", "pupal_survival_analysis_plot.png"), 
-            plot = pupal_survival_analysis_plot, width = 6, height = 4, dpi = 300)
 
 # carry out a Chi Squared analysis that assumes all temperature groups have the 
 # same survival distribution
@@ -115,22 +115,22 @@ clutch_size_plot <- ggplot(female_moths_clean,
              linetype = "dashed", 
              color = "black", 
              linewidth = 1) +
-  labs(x = "Pupa Temperature Treatment",
+  labs(title = "(b) Reproduction",
+       x = "Pupa Temperature Treatment",
        y = "Clutch Size (eggs)") +
   scale_fill_manual(values = temperature_treatment_colours) +
   scale_colour_manual(values = temperature_treatment_colours) +
   scale_x_discrete(labels = c("Cold", "Cool", "Mean", "Warm", "Hot", "Ambient")) +
   theme_bw() +
-  theme(axis.title = element_text(size = 11),
+  theme(plot.title = element_text(hjust = 0.5, 
+                                  face = "bold", 
+                                  size = 11),
+        axis.title = element_text(size = 11),
         axis.text = element_text(size = 9),
         legend.position = "none")
 
 # look at the output
 clutch_size_plot
-
-# save as a png file in figures folder 
-ggsave(here("figures", "clutch_size_plot.png"), 
-       plot = clutch_size_plot, width = 6, height = 4, dpi = 300)
 
 # combine the adult moth fitness plots 
 adult_moth_fitness_combined <- (pupal_survival_analysis_plot | clutch_size_plot)
@@ -139,7 +139,7 @@ adult_moth_fitness_combined <- (pupal_survival_analysis_plot | clutch_size_plot)
 adult_moth_fitness_combined
 
 # save as a png in the figures folder
-ggsave(here("figures", "adult_moth_fitness_combined_plot.png"), 
+ggsave(here("figures", "figure4.png"), 
             plot = adult_moth_fitness_combined, width = 6, height = 3, dpi = 300)
 
 #### MODEL ####
