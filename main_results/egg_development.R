@@ -40,7 +40,6 @@ larval_hatching_transformed <- larval_hatching %>%
   filter(subclutch_id != "f3.control.hot.2") %>%
   select(day, subclutch_id, number_larvae)
 
-
 # find the total positive increase in larvae hatching 
 larval_hatching_processed <- larval_hatching_transformed %>%
   arrange(subclutch_id, day) %>%
