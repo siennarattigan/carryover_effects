@@ -25,12 +25,12 @@ adult_moths$pupa_temperature_treatment <- factor(adult_moths$pupa_temperature_tr
 
 
 # set up a common colour palette for plots
-temperature_treatment_colours <- c("cold" = "#1965AE",
-                                   "cool" = "#3FAB5C",
-                                   "mean" = "#FFDB58",
-                                   "warm" = "#E66815", 
-                                   "hot" = "#DE1117", 
-                                   "ambient" = "#777777") 
+temperature_treatment_colours <- c("cold" = "#2166AC",
+                                   "cool" = "#63BFB4",
+                                   "mean" = "#FDDC7A",
+                                   "warm" = "#EF8A62", 
+                                   "hot" = "#B2182B",
+                                   "ambient" = "#777777")
 
 
 ####  SURVIVAL ANALYSIS ####
@@ -53,9 +53,9 @@ label_df <- data.frame(
 # of individuals at risk (not emerged) just before time t, and di = number of 
 # events (number emergenced) at time t
 pupal_survival_analysis_plot <- survfit2(Surv(time, status) ~ temperature, data = pupal_survival) %>% 
-  ggsurvfit(linewidth = 0.9) +
+  ggsurvfit(linewidth = 0.8) +
   labs(x = "Pupal Development Time (days)",
-       y = "Proportion of Pupae Not Emerged",
+       y = "Proportion Not Emerged",
        color = "Pupa Temperature Treatment") +
   geom_text(data = label_df,
             aes(x = x, 
@@ -64,15 +64,13 @@ pupal_survival_analysis_plot <- survfit2(Surv(time, status) ~ temperature, data 
                 color = group),
             fontface = "italic",
             hjust = 0,
-            size = 3.5,
-            colour = "black") +
+            size = 3,
+            colour = "black") + 
   scale_colour_manual(values = temperature_treatment_colours) +
-  coord_cartesian(xlim = c(100, 200)) + 
+  coord_cartesian(xlim = c(100, 210)) + 
   theme_bw() +
   theme(axis.title = element_text(size = 11),
-        axis.text = element_text(size = 10),
-        axis.title.x = element_text(margin = margin(t = 10)), 
-        axis.title.y = element_text(margin = margin(r = 10)),
+        axis.text = element_text(size = 9),
         legend.position = "none")
 
 
@@ -105,13 +103,13 @@ clutch_size_plot <- ggplot(female_moths_clean,
                                colour = pupa_temperature_treatment)) +
   geom_jitter(width = 0.2, 
               alpha = 0.7, 
-              size = 3, 
+              size = 2.5, 
               stroke = 0) +
   stat_summary(fun = mean, 
                geom = "crossbar", 
-               width = 0.5,
-               linewidth = .8, 
-               alpha = 0.8, 
+               width = 0.6,
+               linewidth = 0.5, 
+               alpha = 1, 
                lineend = "round") +
   geom_vline(xintercept = 5.5, 
              linetype = "dashed", 
@@ -124,9 +122,7 @@ clutch_size_plot <- ggplot(female_moths_clean,
   scale_x_discrete(labels = c("Cold", "Cool", "Mean", "Warm", "Hot", "Ambient")) +
   theme_bw() +
   theme(axis.title = element_text(size = 11),
-        axis.text = element_text(size = 10),
-        axis.title.x = element_text(margin = margin(t = 10)), 
-        axis.title.y = element_text(margin = margin(r = 10)),
+        axis.text = element_text(size = 9),
         legend.position = "none")
 
 # look at the output
@@ -135,6 +131,16 @@ clutch_size_plot
 # save as a png file in figures folder 
 ggsave(here("figures", "clutch_size_plot.png"), 
        plot = clutch_size_plot, width = 6, height = 4, dpi = 300)
+
+# combine the adult moth fitness plots 
+adult_moth_fitness_combined <- (pupal_survival_analysis_plot | clutch_size_plot)
+
+# look at the output
+adult_moth_fitness_combined
+
+# save as a png in the figures folder
+ggsave(here("figures", "adult_moth_fitness_combined_plot.png"), 
+            plot = adult_moth_fitness_combined, width = 6, height = 3, dpi = 300)
 
 #### MODEL ####
 

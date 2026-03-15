@@ -21,12 +21,12 @@ egg_subcltuches$egg_temperature_treatment <- factor(egg_subcltuches$egg_temperat
 
 
 # set up a common colour palette for plots
-temperature_treatment_colours <- c("cold" = "#1965AE",
-                                   "cool" = "#3FAB5C",
-                                   "mean" = "#FFDB58",
-                                   "warm" = "#E66815", 
-                                   "hot" = "#DE1117", 
-                                   "ambient" = "#777777") 
+temperature_treatment_colours <- c("cold" = "#2166AC",
+                                   "cool" = "#63BFB4",
+                                   "mean" = "#FDDC7A",
+                                   "warm" = "#EF8A62", 
+                                   "hot" = "#B2182B",
+                                   "ambient" = "#777777")
 
 #### CALCULATE HALF-HATCH DATE ####
 

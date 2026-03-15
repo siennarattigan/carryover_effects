@@ -20,11 +20,11 @@ adult_moths$pupa_temperature_treatment <- factor(adult_moths$pupa_temperature_tr
 
 
 # set up a common colour palette for plots
-temperature_treatment_colours <- c("cold" = "#1965AE",
-                                   "cool" = "#3FAB5C",
-                                   "mean" = "#FFDB58",
-                                   "warm" = "#E66815", 
-                                   "hot" = "#DE1117", 
+temperature_treatment_colours <- c("cold" = "#2166AC",
+                                   "cool" = "#63BFB4",
+                                   "mean" = "#FDDC7A",
+                                   "warm" = "#EF8A62", 
+                                   "hot" = "#B2182B",
                                    "ambient" = "#777777") 
 
 
@@ -39,13 +39,13 @@ pupal_development_time_plot <- ggplot(adult_moths,
                                           colour = pupa_temperature_treatment)) +
   geom_jitter(width = 0.2, 
               alpha = 0.7, 
-              size = 3, 
+              size = 2.5, 
               stroke = 0) +
   stat_summary(fun = mean, 
                geom = "crossbar", 
                width = 0.5,
-               linewidth = 0.8, 
-               alpha = 0.8, 
+               linewidth = 0.6, 
+               alpha = 1, 
                lineend = "round") +
   geom_vline(xintercept = 5.5, linetype = "dashed", color = "black", linewidth = 1) +
   labs(x = "Pupa Temperature Treatment",
@@ -55,9 +55,7 @@ pupal_development_time_plot <- ggplot(adult_moths,
   scale_x_discrete(labels = c("Cold", "Cool", "Mean", "Warm", "Hot", "Ambient")) +
   theme_bw() +
   theme(axis.title = element_text(size = 11),
-        axis.text = element_text(size = 10),
-        axis.title.x = element_text(margin = margin(t = 10)), 
-        axis.title.y = element_text(margin = margin(r = 10)),
+        axis.text = element_text(size = 9),
         legend.position = "none")
 
 # look at the output
