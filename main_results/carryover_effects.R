@@ -146,6 +146,7 @@ emergence_vs_egg_dev_model <- lmer(egg_development_time ~ emergence_day*egg_temp
 
 # look at the output
 summary(emergence_vs_egg_dev_model)
+anova(emergence_vs_egg_dev_model)
 
 #### CHECK FIT ####
 
@@ -232,3 +233,4 @@ emergence_vs_egg_dev_plot
 # save as a png in the figures folder
 ggsave(here("figures", "figure6.png"), 
        plot = emergence_vs_egg_dev_plot, width = 6, height = 4, dpi = 300)
+
