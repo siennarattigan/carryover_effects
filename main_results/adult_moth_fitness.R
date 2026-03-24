@@ -55,7 +55,7 @@ label_df <- data.frame(
 # events (number emergenced) at time t
 pupal_survival_analysis_plot <- survfit2(Surv(time, status) ~ temperature, data = pupal_survival) %>% 
   ggsurvfit(linewidth = 0.8) +
-  labs(title = "(a) Survival",
+  labs(title = "(a) Emergence success",
        x = "Pupal Development Time (days)",
        y = "Proportion Not Emerged",
        color = "Pupa Temperature Treatment") +
@@ -116,7 +116,7 @@ clutch_size_plot <- ggplot(female_moths_clean,
              linetype = "dashed", 
              color = "black", 
              linewidth = 1) +
-  labs(title = "(b) Reproduction",
+  labs(title = "(b) Reproductive success",
        x = "Pupa Temperature Treatment",
        y = "Clutch Size (eggs)") +
   scale_fill_manual(values = temperature_treatment_colours) +
