@@ -54,8 +54,8 @@ pupal_development_time_plot <- ggplot(adult_moths,
   scale_colour_manual(values = temperature_treatment_colours) +
   scale_x_discrete(labels = c("Cold", "Cool", "Mean", "Warm", "Hot", "Ambient")) +
   theme_bw() +
-  theme(axis.title = element_text(size = 11),
-        axis.text = element_text(size = 9),
+  theme(axis.title = element_text(size = 14),
+        axis.text = element_text(size = 13),
         legend.position = "none")
 
 # look at the output

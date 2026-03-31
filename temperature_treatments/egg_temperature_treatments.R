@@ -280,9 +280,9 @@ egg_temperature_treatments_daily_experimental_plot<- ggplot(daily_mean_temperatu
                           as.Date("2025-05-30"))) + 
   scale_y_continuous(limits = c(-5, 25)) +
   theme_bw() + 
-  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 11),
-        axis.title = element_text(size = 11),
-        axis.text = element_text(size = 9),
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 8),
+        axis.title = element_text(size = 8),
+        axis.text = element_text(size = 7),
         axis.text.x = element_text(angle = 30, hjust = 1),
         legend.position = "none")
 
@@ -368,7 +368,7 @@ egg_temperature_treatments_mean_ambient_plot
 mean_ambient_temperatures_combined <-   (pupa_temperature_treatments_mean_ambient_plot |
                                            egg_temperature_treatments_mean_ambient_plot) +
   plot_layout(guides = "collect") & 
-  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 11), 
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 10), 
         legend.position = "bottom",
         legend.margin = margin(t = -8, unit = "pt"))
 

@@ -73,9 +73,9 @@ pupal_survival_analysis_plot <- survfit2(Surv(time, status) ~ temperature, data 
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5, 
                                   face = "bold", 
-                                  size = 11),
-        axis.title = element_text(size = 11),
-        axis.text = element_text(size = 9),
+                                  size = 9),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 7),
         legend.position = "none")
 
 
@@ -125,9 +125,9 @@ clutch_size_plot <- ggplot(female_moths_clean,
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5, 
                                   face = "bold", 
-                                  size = 11),
-        axis.title = element_text(size = 11),
-        axis.text = element_text(size = 9),
+                                  size = 9),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 7),
         legend.position = "none")
 
 # look at the output

@@ -221,8 +221,8 @@ egg_development_time_plot <- ggplot(egg_subcltuches_clean_hatch,
   scale_colour_manual(values = temperature_treatment_colours) +
   scale_x_discrete(labels = c("Cold", "Cool", "Mean", "Warm", "Hot", "Ambient")) +
   theme_bw() +
-  theme(axis.title = element_text(size = 11),
-        axis.text = element_text(size = 10),
+  theme(axis.title = element_text(size = 14),
+        axis.text = element_text(size = 13),
         axis.title.x = element_text(margin = margin(t = 10)), 
         axis.title.y = element_text(margin = margin(r = 10)),
         legend.position = "none")

@@ -217,8 +217,8 @@ emergence_vs_egg_dev_plot <- ggplot() +
   scale_fill_manual(values = temperature_treatment_colours, 
                     labels = c("Cold", "Cool", "Mean", "Warm", "Hot")) +
   theme_bw() +
-  theme(axis.title = element_text(size = 11),
-        axis.text = element_text(size = 10),
+  theme(axis.title = element_text(size = 14),
+        axis.text = element_text(size = 13),
         axis.title.x = element_text(margin = margin(t = 10)), 
         axis.title.y = element_text(margin = margin(r = 10)),
         legend.title = element_text(size = 11),

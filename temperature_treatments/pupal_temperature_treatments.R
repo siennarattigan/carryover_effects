@@ -95,9 +95,9 @@ pupa_temperature_treatments_experimental_plot <- ggplot(experimental_temperature
   theme_bw() + 
   theme(plot.title = element_text(hjust = 0.5, 
                                   face = "bold",
-                                  size = 11),
-        axis.title = element_text(size = 11),
-        axis.text = element_text(size = 9),
+                                  size = 8),
+        axis.title = element_text(size = 8),
+        axis.text = element_text(size = 7),
         axis.text.x = element_text(angle = 30, hjust = 1),
         legend.position = "none")  
 
