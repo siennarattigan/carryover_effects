@@ -156,17 +156,6 @@ female_moths_clean_minus_control$pupa_temperature_treatment <- factor(female_mot
 # convert clutch size from a character to an integer
 female_moths_clean_minus_control$clutch_size <- as.integer(female_moths_clean_minus_control$clutch_size)
 
-# assign the categorical temperature treatments a numerical values using mean 
-# temperature experienced before the mean development time for each treatment.
-# these values are calculated in the pupal_development.R script pre modelling 
-female_moths_clean_minus_control <- female_moths_clean_minus_control %>%
-  mutate(pupa_temperature_treatment_numerical = case_when(
-    pupa_temperature_treatment == "mean" ~ 13.5,
-    pupa_temperature_treatment == "cold" ~ 7.23,
-    pupa_temperature_treatment == "cool" ~ 10.4,
-    pupa_temperature_treatment == "warm" ~ 15.9,
-    pupa_temperature_treatment == "hot" ~ 17.5))
-
 # check for over dispersion in clutch size
 mean_clutch_size <- mean(female_moths_clean_minus_control$clutch_size)
 variance_clutch_size <- var(female_moths_clean_minus_control$clutch_size)
@@ -178,30 +167,40 @@ dispersion_statistic
 # model the effect of temperature on clutch size, include a linear and quadratic 
 # component. use glmmTMB (negative binomial) instead of glmer because of large 
 # over dispersion in the count data
-clutch_size_model <- glmmTMB(clutch_size ~ pupa_temperature_treatment_numerical + 
-                               I(pupa_temperature_treatment_numerical^2), 
+clutch_size_model <- glmmTMB(clutch_size ~ pupa_temperature_treatment, 
                              family = nbinom2(link = "log"),
                              data = female_moths_clean_minus_control)
 
 # look at the output 
 summary(clutch_size_model)
 
+# remove females that laid no eggs because we can't be sure they mated 
+female_moths_minus_zeros <- female_moths_clean_minus_control %>%
+  filter(clutch_size >= "1")
+female_moths_minus_zeros
+
+# check for overdispersion again  
+mean_clutch_size <- mean(female_moths_minus_zeros$clutch_size)
+variance_clutch_size <- var(female_moths_minus_zeros$clutch_size)
+dispersion_statistic <- variance_clutch_size / mean_clutch_size
+
+#look at the output
+dispersion_statistic 
+
+# remodel the effect of temperature on clutch size, include a linear and quadratic 
+# component. use glmmTMB (negative binomial) instead of glmer because of large 
+# over dispersion in the count data
+clutch_size_model_2 <- glmmTMB(clutch_size ~ pupa_temperature_treatment, 
+                             family = nbinom2(link = "log"),
+                             data = female_moths_minus_zeros)
+
+# look at the output 
+summary(clutch_size_model_2)
+
 #### CHECK FIT ####
 
-# compare the full model to a reduced model without the squared term 
-full_model <- glmmTMB(clutch_size ~ pupa_temperature_treatment_numerical +
-                        I(pupa_temperature_treatment_numerical^2),
-                      family = nbinom2(link = "log"),
-                      data = female_moths_clean_minus_control)
-reduced_model <- glmmTMB(clutch_size ~ pupa_temperature_treatment_numerical, 
-                         family = nbinom2(link = "log"), 
-                         data = female_moths_clean_minus_control)
-
-anova(full_model, reduced_model, test = "Chisq")
-
 # compare the full model to a null model
-full_model <- glmmTMB(clutch_size ~ pupa_temperature_treatment_numerical +
-                        I(pupa_temperature_treatment_numerical^2),
+full_model <- glmmTMB(clutch_size ~ pupa_temperature_treatment,
                       family = nbinom2(link = "log"),
                       data = female_moths_clean_minus_control)
 null_model <- glmmTMB(clutch_size ~ 1, 

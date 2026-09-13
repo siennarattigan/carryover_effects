@@ -45,6 +45,8 @@ temperature_treatment_colours <- c("cold" = "#2166AC",
 # temperature treatment
 emergence_vs_hatching_model <- lmer(half_hatch_day ~ emergence_day*egg_temperature_treatment +
                                       (1 | female_id), data = egg_subcltuches_minus_control)
+emergence_vs_hatching_model <- lmer(half_hatch_day ~ pupula*egg_temperature_treatment +
+                                      (1 | female_id), data = egg_subcltuches_minus_control)
 
 #look at the output
 summary(emergence_vs_hatching_model)
@@ -147,6 +149,22 @@ emergence_vs_egg_dev_model <- lmer(egg_development_time ~ emergence_day*egg_temp
 # look at the output
 summary(emergence_vs_egg_dev_model)
 anova(emergence_vs_egg_dev_model)
+
+## compare warm and hot slopes to zero 
+
+# filter 
+egg_subcltuches_hot <- egg_subcltuches_minus_control %>%
+  filter(egg_temperature_treatment == "hot")
+egg_subcltuches_warm <- egg_subcltuches_minus_control %>%
+  filter(egg_temperature_treatment == "warm")
+
+# model 
+emergence_vs_egg_dev_hot_model <- lm(egg_development_time ~ emergence_day, data = egg_subcltuches_hot)
+emergence_vs_egg_dev_warm_model <- lm(egg_development_time ~ emergence_day, data = egg_subcltuches_warm)
+
+# look at the output
+summary(emergence_vs_egg_dev_hot_model)
+summary(emergence_vs_egg_dev_warm_model)
 
 #### CHECK FIT ####
 

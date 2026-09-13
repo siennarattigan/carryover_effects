@@ -9,7 +9,7 @@
 library(here)
 library(tidyverse)
 library(lmerTest)
-
+packageVersion("lmerTest")
 # data
 egg_subcltuches <- read.csv(here("data_files", "egg_subclutches.csv"))
 larval_hatching <- read.csv(here("data_files", "egg_hatching_raw_NAs.csv"))
@@ -241,49 +241,8 @@ egg_subcltuches_clean_hatch_minus_control <- egg_subcltuches_clean_hatch %>%
   filter(egg_temperature_treatment != "ambient")
 
 # reorder the temperature treatment so that the mean is the reference
-egg_subcltuches_clean_hatch_minus_control$egg_temperature_treatment <- factor(egg_subcltuches_clean_hatch_minus_control$egg_temperature_treatment, levels = c("mean", "cold", "cool", "warm", "hot"))
-
-# convert egg development time to a numeric variable
-egg_subcltuches_clean_hatch <- egg_subcltuches_clean_hatch %>%
-  mutate(egg_development_time = as.numeric(as.character(egg_development_time)))
-
-# subset the temperature data
-egg_temperature_treatments <- egg_temperature_treatments %>%
-  subset(select = c(cold, cool, mean, warm, hot, ambient)) %>%
-  drop_na()
-
-# calculate the mean development time for each treatment
-mean_egg_development_times <-  egg_subcltuches_clean_hatch %>%
-  group_by(egg_temperature_treatment) %>%
-  summarise(mean_development_time = mean(egg_development_time))
-
-# look at the output 
-print(mean_egg_development_times)
-
-# calculate the mean temperature between the egg entering the incubators and 
-# the mean development time in each temperature treatment
-mean_temps_eggs <- egg_temperature_treatments %>%
-  mutate(time = row_number()) %>% 
-  pivot_longer(cols = -time,
-               names_to = "egg_temperature_treatment",
-               values_to = "temperature") %>%
-  left_join(mean_egg_development_times, by = "egg_temperature_treatment") %>%
-  filter(time <= mean_development_time) %>%
-  group_by(egg_temperature_treatment) %>%
-  summarise(mean_temperature = mean(temperature))
-
-# look at the output
-mean_temps_eggs
-
-# assign the categorical temperature treatments a numerical values using mean 
-# temperature experienced before the mean development time for each treatment
-egg_subcltuches_clean_hatch_minus_control <- egg_subcltuches_clean_hatch_minus_control %>%
-  mutate(egg_temperature_treatment_numerical = case_when(
-    egg_temperature_treatment == "mean" ~ 6.12,
-    egg_temperature_treatment == "cold" ~ 2.34,
-    egg_temperature_treatment == "cool" ~ 3.86,
-    egg_temperature_treatment == "warm" ~ 8.39,
-    egg_temperature_treatment == "hot" ~ 9.56))
+egg_subcltuches_clean_hatch_minus_control$egg_temperature_treatment <- factor(egg_subcltuches_clean_hatch_minus_control$egg_temperature_treatment, 
+                                                                              levels = c("mean", "cold", "cool", "warm", "hot"))
 
 # model the effect of temperature treatment on egg development time, include female ID as a random effect 
 egg_development_time_model <- lmer(egg_development_time ~ egg_temperature_treatment + 
