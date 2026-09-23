@@ -54,7 +54,6 @@ larval_hatching_processed <- larval_hatching_transformed %>%
 larval_hatching_proportions <- larval_hatching_processed %>%
   mutate(proportion_hatched = cum_larvae / max_cum_larvae) 
 
-
 ## subclutches with >2 larvae hatched = large
 
 # filter the processed data for (large) subclutches with great than two larvae hatched (enough for a logistic curve)

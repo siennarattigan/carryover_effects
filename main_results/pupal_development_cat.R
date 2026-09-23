@@ -13,11 +13,10 @@ library(lmerTest)
 # data
 adult_moths <- read.csv(here("data_files", "adult_moths.csv"))
 pupal_temperature_treatments <- read.csv(here("data_files", "pupa_temperature_treatments_daily.csv"))
-
+head(adult_moths)
 # reorder temperature treatments for plots
 adult_moths$pupa_temperature_treatment <- factor(adult_moths$pupa_temperature_treatment,
                                                  levels = c("cold", "cool", "mean", "warm", "hot", "ambient"))
-
 
 # set up a common colour palette for plots
 temperature_treatment_colours <- c("cold" = "#2166AC",
@@ -108,8 +107,8 @@ adult_moths_minus_m1.cold <- adult_moths_minus_control %>%
 
 # remodel
 pupal_development_time_outlier_model <- lmer(pupa_development_time ~ pupa_temperature_treatment + 
-                                       (1 | clutch_id), 
-                                     data = adult_moths_minus_m1.cold)
+                                       (1 | clutch_id), data = adult_moths_minus_m1.cold)
+
 summary(pupal_development_time_outlier_model)
 #### CHECK FIT ####
 

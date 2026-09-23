@@ -45,8 +45,6 @@ temperature_treatment_colours <- c("cold" = "#2166AC",
 # temperature treatment
 emergence_vs_hatching_model <- lmer(half_hatch_day ~ emergence_day*egg_temperature_treatment +
                                       (1 | female_id), data = egg_subcltuches_minus_control)
-emergence_vs_hatching_model <- lmer(half_hatch_day ~ pupula*egg_temperature_treatment +
-                                      (1 | female_id), data = egg_subcltuches_minus_control)
 
 #look at the output
 summary(emergence_vs_hatching_model)
@@ -143,7 +141,7 @@ emergence_vs_hatching_plot
 
 # model the effect of emergence date on egg development controlling for egg
 # temperature treatment 
-emergence_vs_egg_dev_model <- lmer(egg_development_time ~ emergence_day*egg_temperature_treatment + 
+emergence_vs_egg_dev_model <- lmer(egg_development_time ~ emergence_day*egg_temperature_treatment +
                                      (1 | female_id), data = egg_subcltuches_minus_control)
 
 # look at the output
