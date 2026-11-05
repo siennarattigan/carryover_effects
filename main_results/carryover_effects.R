@@ -36,8 +36,7 @@ temperature_treatment_colours <- c("cold" = "#2166AC",
                                    "hot" = "#B2182B",
                                    "ambient" = "#777777")
 
-#### (1) Effect of maternal emergence date on larval half-hatch date ####
-#### across egg temperature treatments ####
+#### (1) Effect of maternal emergence date on larval half-hatch date across egg temperature treatments ####
 
 #### MODEL ####
 
@@ -134,8 +133,7 @@ emergence_vs_hatching_plot <- ggplot() +
 # look at the output
 emergence_vs_hatching_plot
 
-#### (2) Effect of maternal emergence date on egg development time ####
-#### across egg temperature treatments ####
+#### (2) Effect of maternal emergence date on egg development time across egg temperature treatments ####
 
 #### MODEL ####
 
@@ -249,4 +247,34 @@ emergence_vs_egg_dev_plot
 # save as a png in the figures folder
 ggsave(here("figures", "figure6.png"), 
        plot = emergence_vs_egg_dev_plot, width = 6, height = 4, dpi = 300)
+
+
+
+#### (3) Effect of maternal temperature treatment on larval hatching across egg temperature treatments ####
+
+
+
+# model the effect of maternal temperature treatment on half hatch date controlling for egg
+# temperature treatment 
+mat_temp_vs_hatching_model <- lmer(half_hatch_day ~ maternal_temperature_treatment*egg_temperature_treatment + (1 | female_id), 
+                                   data = egg_subcltuches_minus_control)
+
+# look at the output
+summary(mat_temp_vs_hatching_model)
+anova(mat_temp_vs_hatching_model)
+
+#### (4) Effect of maternal temperature treatment on egg development time across egg temperature treatments ####
+
+# model the effect of maternal temperature treatment on egg development controlling for egg
+# temperature treatment 
+mat_temp_vs_egg_dev_model <- lmer(egg_development_time ~ maternal_temperature_treatment*egg_temperature_treatment +
+                                     (1 | female_id), data = egg_subcltuches_minus_control)
+
+# look at the output
+summary(mat_temp_vs_egg_dev_model)
+anova(emergence_vs_egg_dev_model)
+
+
+
+
 
