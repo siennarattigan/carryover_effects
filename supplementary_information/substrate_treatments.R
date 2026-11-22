@@ -58,7 +58,7 @@ emergence_success_substrate_treatments_plot <- ggplot(emergence_success_percenta
 emergence_success_substrate_treatments_plot
 
 # save as a png in the figures folder 
-ggsave(here("figures", "emergence_success_substrate_treatments_plot.png"), 
+ggsave(here("figures", "figureS2.png"), 
        plot = emergence_success_substrate_treatments_plot, width = 6, height = 4, dpi = 300)
 
 #### MODEL ####

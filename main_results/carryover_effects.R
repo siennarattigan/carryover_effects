@@ -222,7 +222,7 @@ emergence_vs_egg_dev_plot <- ggplot() +
               alpha = 0.7, 
               size = 2.5, 
               stroke = 0) +
-  labs(x = "Maternal Emergence Day (2024)",
+  labs(x = "Parental Emergence Day (2024)",
        y = "Egg Development Time (days)", 
        color = "Egg Temperature Treatment",
        fill = "Egg Temperature Treatment") +
@@ -231,8 +231,8 @@ emergence_vs_egg_dev_plot <- ggplot() +
   scale_fill_manual(values = temperature_treatment_colours, 
                     labels = c("Cold", "Cool", "Mean", "Warm", "Hot")) +
   theme_bw() +
-  theme(axis.title = element_text(size = 14),
-        axis.text = element_text(size = 13),
+  theme(axis.title = element_text(size = 12),
+        axis.text = element_text(size = 11),
         axis.title.x = element_text(margin = margin(t = 10)), 
         axis.title.y = element_text(margin = margin(r = 10)),
         legend.title = element_text(size = 11),
@@ -248,11 +248,7 @@ emergence_vs_egg_dev_plot
 ggsave(here("figures", "figure6.png"), 
        plot = emergence_vs_egg_dev_plot, width = 6, height = 4, dpi = 300)
 
-
-
 #### (3) Effect of maternal temperature treatment on larval hatching across egg temperature treatments ####
-
-
 
 # model the effect of maternal temperature treatment on half hatch date controlling for egg
 # temperature treatment 
