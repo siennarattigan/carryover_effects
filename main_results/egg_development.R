@@ -49,7 +49,7 @@ larval_hatching_processed <- larval_hatching_transformed %>%
   mutate(cum_larvae = cumsum(change_larvae)) %>%
   mutate(max_cum_larvae = max(cum_larvae)) %>%
   ungroup()
-
+larval_hatching_processed
 # calculate the proportion of larvae hatched each day in each subclutch
 larval_hatching_proportions <- larval_hatching_processed %>%
   mutate(proportion_hatched = cum_larvae / max_cum_larvae) 
@@ -273,3 +273,38 @@ qqline(resid(egg_development_time_model), col = "red")
 egg_development_time_re <- ranef(egg_development_time_model)$female_id[[1]]
 qqnorm(egg_development_time_re)
 qqline(egg_development_time_re, col = "red")
+
+
+
+## spread of hatching within a subclutch
+
+larval_hatching_long <- larval_hatching_processed %>%
+       filter(change_larvae > 0) %>%
+       uncount(weights = change_larvae) %>%
+       select(day, subclutch_id)
+
+t<-larval_hatching_long%>%
+  group_by(subclutch_id)%>%
+  summarise(sd_day=sd(day),
+            min_day=min(day,na.rm=TRUE), 
+            max_day=max(day,na.rm=TRUE),
+            range_day=max_day-min_day)%>%
+  ungroup()%>%
+  summarise(meansd=mean(sd_day,na.rm=TRUE), 
+            meanrange=mean(range_day,na.rm=TRUE),
+            se_range_day= sd(range_day)/sqrt(length(range_day)))
+
+# for hot only 
+filtered_data <- larval_hatching_long %>%
+       filter(str_detect(subclutch_id, "^[^.]+\\.[^.]+\\.hot$"))
+
+filtered_data%>%
+  group_by(subclutch_id)%>%
+  summarise(sd_day=sd(day),
+            min_day=min(day,na.rm=TRUE), 
+            max_day=max(day,na.rm=TRUE),
+            range_day=max_day-min_day)%>%
+  ungroup()%>%
+  summarise(meansd=mean(sd_day,na.rm=TRUE), 
+            meanrange=mean(range_day,na.rm=TRUE),
+            se_range_day= sd(range_day)/sqrt(length(range_day)))
